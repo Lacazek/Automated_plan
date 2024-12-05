@@ -1,0 +1,34 @@
+z_PTV_tot : ptv hr1 | ptv hr2 | ptv br1 | ptv br2 | ptv ir
+z_OV HR : ptv hr1 & ptv hr2
+z_PTV_HR_tot : ptv hr1 | ptv hr2
+z_PTV_BR_tot : ptv br1 | ptv br2
+test1 :ptv_hr_tot ! 3
+z_PTV_IR : ptv ir # test1
+z_GTV : gtv n+ | gtv +
+z_PTV HR1 : ptv hr1 # z_gtv
+z_PTV HR2 : ptv hr2 # z_gtv
+z_PTV HR : ptv hr # z_gtv
+z_PTV_BR_proche : ptv hr tot ! 15
+z_PTV_BR_proche: z_ptv_br_proche # ptv_hr_tot
+z_PTV_BR_proche : z_ptv_br_proche & z_ptv_br_tot
+z_PTV_BR_loin : z_ptv_br_tot # z_ptv_br_loin # z_ptv_hr_tot
+test : /
+PRV Moelle +2 : moelle ! 2
+PRV Moelle +3 : moelle ! 3
+PRV Moelle +5 : moelle ! 5
+PRC TC +2 : tronc cerebral ! 2
+PRV TC +3 : tronc cerebral ! 3
+test : z_ptv_hr_tot ! 3
+z_parotide_D_opt : parotide d # test
+z_parotide_G_opt : parotide g # test
+test : /
+test1: z_ptv_br_tot ! 3
+z_Trac/Oeso opt : oesophage | trachee
+z_Trac/Oeso opt :z_trac/oeso opt # test1
+test1 : /
+z_opt post :
+z_opt inter :
+z_artefacts :
+z_ring1 :
+z_ring2 :
+

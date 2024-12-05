@@ -1,0 +1,48 @@
+﻿<Window x:Class="Structure_optimisation.UserInterface_Volume"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Structure_optimisation"
+        mc:Ignorable="d"
+        Title="UserInterface_Volume" Height="450" Width="800">
+    <Grid>
+        <ComboBox x:Name="Box_Loc" PreviewMouseWheel="ComboBox_PreviewMouseWheel_loc" DropDownOpened="ComboBox_DropDownOpened_loc" DropDownClosed="ComboBox_DropDownClosed_loc" HorizontalAlignment="Left" Height="33" Margin="151,167,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged"/>
+        <TextBlock x:Name ="Text_loc" HorizontalAlignment="Left" Height="21" Margin="151,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" TextAlignment="Center"><Run Language="fr-fr" Text="Choississez la localisation appropriée."/></TextBlock>
+        <Button x:Name="OK_Button" Content="OK" HorizontalAlignment="Left" Height="32" Margin="469,320,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="51" Margin="79,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" TextAlignment="Center" FontSize="16"><Run Language="fr-fr" Text="Création des volumes d'optimisation de façon automatique"/></TextBlock>
+        <Button Content="Close" HorizontalAlignment="Left" Height="32" Margin="617,320,0,0" VerticalAlignment="Top" Width="116" Background="#FFFF2727" Click="Button_Close"/>
+        <Image x:Name="FisherMan" HorizontalAlignment="Left" Height="230" Margin="433,77,0,0" VerticalAlignment="Top" Width="366" RenderTransformOrigin="0.542,0.507"  Source = "B:\RADIOTHERAPIE\Physique\43- Routine\scripting\Opti_Struct\FisherMan4.png" IsEnabled="False"/>
+        <Rectangle HorizontalAlignment="Center" Height="61" Stroke="Black" VerticalAlignment="Top" Width="800" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" Margin="0,373,0,0">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="434" Margin="753,0,0,0" Stroke="Black" VerticalAlignment="Center" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" HorizontalAlignment="Left" Width="47"/>
+        <Rectangle HorizontalAlignment="Left" Height="434" Stroke="Black" VerticalAlignment="Center" Width="38" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF"/>
+        <TextBlock HorizontalAlignment="Center" Height="55" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="616" TextAlignment="Center" FontSize="36" Background="#FF95D1FF"><Run Language="fr-fr" Text="A"/><Run Text="utocontour"/></TextBlock>
+
+        <ComboBox x:Name="Box_Loc_cible1" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible1" DropDownOpened="ComboBox_DropDownOpened_cible1" DropDownClosed="ComboBox_DropDownClosed_cible1" HorizontalAlignment="Left" Height="33" Margin="137,236,0,0" VerticalAlignment="Top" Width="94" SelectionChanged="ComboBox_SelectionChanged_cible1"/>
+        <TextBlock x:Name ="text_Cible1" HorizontalAlignment="Left" Height="21" Margin="31,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center"><Run Language="fr-fr" Text="Cible 1 :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cible2" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible2" DropDownOpened="ComboBox_DropDownOpened_cible2" DropDownClosed="ComboBox_DropDownClosed_cible2" HorizontalAlignment="Left" Height="33" Margin="137,283,0,0" VerticalAlignment="Top" Width="94" SelectionChanged="ComboBox_SelectionChanged_cible2"/>
+        <TextBlock x:Name ="text_Cible2" HorizontalAlignment="Left" Height="21" Margin="31,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center"><Run Text="Cible "/><Run Language="fr-fr" Text="2"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cible3" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible3" DropDownOpened="ComboBox_DropDownOpened_cible3" DropDownClosed="ComboBox_DropDownClosed_cible3"  HorizontalAlignment="Left" Height="33" Margin="137,333,0,0" VerticalAlignment="Top" Width="94" SelectionChanged="ComboBox_SelectionChanged_cible3"/>
+        <TextBlock x:Name ="text_Cible3" HorizontalAlignment="Left" Height="21" Margin="33,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" TextAlignment="Center" RenderTransformOrigin="0.583,0.674"><Run Text="Cible "/><Run Language="fr-fr" Text="3"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cible4" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible4" DropDownOpened="ComboBox_DropDownOpened_cible4" DropDownClosed="ComboBox_DropDownClosed_cible4"  HorizontalAlignment="Left" Height="33" Margin="334,236,0,0" VerticalAlignment="Top" Width="95" SelectionChanged="ComboBox_SelectionChanged_cible4"/>
+        <TextBlock x:Name ="text_Cible4" HorizontalAlignment="Left" Height="21" Margin="230,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center" RenderTransformOrigin="0.424,0.543"><Run Text="Cible "/><Run Language="fr-fr" Text="4"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cible5" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible5" DropDownOpened="ComboBox_DropDownOpened_cible5" DropDownClosed="ComboBox_DropDownClosed_cible5" HorizontalAlignment="Left" Height="33" Margin="334,283,0,0" VerticalAlignment="Top" Width="95" SelectionChanged="ComboBox_SelectionChanged_cible5"/>
+        <TextBlock x:Name ="text_Cible5" HorizontalAlignment="Left" Height="21" Margin="230,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center"><Run Text="Cible "/><Run Language="fr-fr" Text="5"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cible6" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cible6" DropDownOpened="ComboBox_DropDownOpened_cible6" DropDownClosed="ComboBox_DropDownClosed_cible6" HorizontalAlignment="Left" Height="33" Margin="334,333,0,0" VerticalAlignment="Top" Width="95" SelectionChanged="ComboBox_SelectionChanged_cible6"/>
+        <TextBlock x:Name ="text_Cible6" HorizontalAlignment="Left" Height="21" Margin="230,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center" RenderTransformOrigin="0.583,0.674"><Run Text="Cible "/><Run Language="fr-fr" Text="6"/><Run Text=" :"/></TextBlock>
+
+        <Button  x:Name="Bouton_path" Content="Path" HorizontalAlignment="Left" Margin="59,174,0,0" VerticalAlignment="Top" Width="73" Background="#FFBEFF93" Click="Button_Click_path"/>
+        <TextBlock x:Name ="Info_path" HorizontalAlignment="Left" Height="36" Margin="43,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextAlignment="Center"><Run Text="Changement du chemin "/><Run Language="fr-fr" Text="utilisateur"/></TextBlock>
+        <TextBlock x:Name ="Text_Targets_title" HorizontalAlignment="Left" Height="21" Margin="145,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" TextAlignment="Center"><Run Text="Choississez l"/><Run Language="fr-fr" Text="es cibles"/><Run Text="."/></TextBlock>
+
+    </Grid>
+</Window>

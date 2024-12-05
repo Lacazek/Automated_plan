@@ -1,0 +1,27 @@
+Structure Canalmed = ss.Structures.Where(x => x.Id.ToUpper().Contains("CANAL MED")).SingleOrDefault();
+Structure Canalmed_5 = ss.AddStructure("Avoidance", "z_Canal+5");
+Structure Moelle = ss.Structures.Where(x => x.Id.ToUpper().Contains("MOELLE")).SingleOrDefault();
+Structure Moelle_5 = ss.AddStructure("Avoidance", "z_Moelle+5");
+Canalmed_5.SegmentVolume = Canalmed.Margin(5.00);
+Moelle_5.SegmentVolume = Moelle.Margin(5.00);
+
+Structure GTV = ss.Structures.Where(x => x.Id.ToUpper().Equals("GTV") || x.Id.ToUpper().Equals("GTV+")).SingleOrDefault();
+Structure PTV_GTV = ss.AddStructure("PTV", "z_PTV-GTV ");
+PTV_GTV.SegmentVolume = LargestPTV.Margin(0.00);
+PTV_GTV.SegmentVolume = LargestPTV.Sub(GTV).And(BODY);
+
+
+Structure Poumons = ss.Structures.Where(x => x.Id.ToUpper().Equals("POUMONS")).SingleOrDefault();
+Structure Poumon_Homo = Poumons;
+if (LargestPTV.CenterPoint.x > 0)
+Poumon_Homo = ss.Structures.Where(x => x.Id.ToUpper().Contains("POUMONG")).SingleOrDefault();
+Structure PoumonHomo_PTV = ss.AddStructure("Organ", "z_PoumH-PTV");
+PoumonHomo_PTV.SegmentVolume = Poumon_Homo.Margin(0.00);
+PoumonHomo_PTV.SegmentVolume = Poumon_Homo.Sub(LargestPTV.Margin(0.00)).And(BODY);
+
+Structure PoumonHomo_PTV_1cm = ss.AddStructure("Organ", "z_PoumH-PTV+1 ");
+PoumonHomo_PTV_1cm.SegmentVolume = Poumon_Homo.Margin(0.00);
+PoumonHomo_PTV_1cm.SegmentVolume = Poumon_Homo.Sub(LargestPTV.Margin(10.00)).And(BODY);
+Structure Poumons_LargestPTV = ss.AddStructure("Avoidance", "z_Poumons-PTV ");
+Poumons_LargestPTV.SegmentVolume = Poumons.Margin(0.00);
+Poumons_LargestPTV.SegmentVolume = Poumons.Sub(LargestPTV).And(BODY);

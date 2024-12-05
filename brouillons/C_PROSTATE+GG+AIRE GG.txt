@@ -1,0 +1,16 @@
+PTV TOT : ptv 1 | ptv 2
+z_OV vessie : vessie & ptv 2
+z_OV rectum : rectum & ptv 2
+z_PTV2-OV : ptv 2 # vessie # rectum
+test : ptv tot ! 3
+z_Vessie : vessie # test
+z_Rectum : rectum # test
+test : /
+z_PTV1 proche : ptv 2 ! 15.00
+z_PTV1 proche : z_ptv1 proche # ptv 2 
+z_PTV1 proche : z_ptv1 proche & ptv 1
+z_PTV1 loin :  ptv tot # z_ptv1 proche # ptv 2
+z_PTV1 loin-GG : z_ptv1 loin # ptv gg
+z_opt post :
+z_opt inter :
+z_opt haut :

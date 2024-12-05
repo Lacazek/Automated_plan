@@ -1,0 +1,17 @@
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+PTV Sein D : CTV sein D ! 5
+z_ctv sein D : CTV sein D ! 0
+z_ptv sein D : CTV sein D ! 5
+test1 : z_ptv sein d ! 10
+test2 : contour externe ! -5
+z_ptv sein D : ptv sein d & test2
+z_ctv sein D : ctv sein d  & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # z_ptv sein d
+z_ring sein D : z_ring sein d & test2
+test1 : /
+test2 : /
+Sein contro : sein g ! 0

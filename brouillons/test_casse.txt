@@ -1,0 +1,19 @@
+test : bill ! 5
+tst : /
+tet : /
+tes : /
+TesT : /
+tesT:/
+esT : /
+Test : /
+TEST : /
+Test1 : bill ! 5
+Test2 : Bill ! 5
+Test3 : bie ! 5
+Test4 : ille ! 5
+Test5 : Bll ! 5
+Test6 : Blle ! 5
+Test7 : Ble ! 5
+Test8 : Billes ! 5
+Test9 : Bilmes ! 5
+Test10 : Bulle ! 5

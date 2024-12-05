@@ -1,0 +1,4 @@
+DosePerFraction : 2.67 Gy
+NumberOfFraction : 15 fr
+TreatmentPercentage : 100 %
+TotalDose : 40.005 Gy
