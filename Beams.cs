@@ -53,7 +53,6 @@ namespace Opti_Struct
 
             // Isocentre
             // Demander utilisateur la target ID ????
-
             _target = model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
             _isocenter = model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(_target.Id)).CenterPoint;
 
@@ -71,6 +70,9 @@ namespace Opti_Struct
             // Beams
             if (model.UserSelection[2].Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
             {
+                // évaluer ici 
+                _gantryAngle = _gantryAngle + 10;
+
                 model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
                 model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
                 model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
@@ -82,8 +84,8 @@ namespace Opti_Struct
                 }
                 else
                 {
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, Math.Abs(_collimatorAngle - 360), _gantryAngle - 180, _isocenter);
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, Math.Abs(_collimatorAngle - 360), _gantryAngle - 190, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 180, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 190, _isocenter);
                 }
 
                 foreach (var (b, index) in model.GetContext.PlanSetup.Beams.Select((b, index) => (b, index)))

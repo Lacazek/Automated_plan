@@ -33,7 +33,6 @@ namespace Structure_optimisation
         private Beams _beams;
         private Dosimetry _dosimetry;
         private GetMyData _getMyData;
-        // private 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -76,23 +75,28 @@ namespace Structure_optimisation
             if (MessageBox.Show("Voulez-vous lancer l'autoplanning ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Message = $"\n\n**************************************************";
-                Message = $"L'utilisateur à choisi de réaliser l'autoplanning";
-                UserInterface_Dosi Interface = new UserInterface_Dosi(this);
-                Interface.ShowDialog();
-            };
+                Message = $"L'utilisateur à choisi de réaliser l'autoplanning\n";
+                UserInterface_Dosi Interface_dosi = new UserInterface_Dosi(this);
+                Interface_dosi.ShowDialog();
 
-            if (MessageBox.Show("Voulez-vous lancer l'évaluation de plan ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Message = $"\n\n**************************************************";
-                Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique";
-                _getMyData = new GetMyData(this);
-                UserInterface_Check Interface = new UserInterface_Check(this);
-                Interface.ShowDialog();
-            };
-            if (MessageBox.Show("Voulez-vous lancer le transfert des données ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
+                //Améliorer fichier log
 
-            }
+                if (MessageBox.Show("Voulez-vous lancer l'évaluation de plan ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    Message = $"\n\n**************************************************";
+                    Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique\n";
+                    _getMyData = new GetMyData(this);
+                    UserInterface_Check Interface_check = new UserInterface_Check(this);
+                    Interface_check.ShowDialog();
+
+                    //Améliorer fichier log
+
+                    if (MessageBox.Show("Voulez-vous lancer le transfert des données ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+
+                    };
+                };
+            };
         }
 
         internal void LaunchPlanning()
@@ -143,6 +147,11 @@ namespace Structure_optimisation
         {
             get { return _file.UserFile; }
             set { _file.UserFile = value; }
+        }
+        internal string UserFileCheck
+        {
+            get { return _getMyData.UserFileCheck; }
+            set { _getMyData.UserFileCheck = value; }
         }
         internal string UserPath
         {

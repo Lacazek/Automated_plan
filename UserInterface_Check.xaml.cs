@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using VMS.TPS.Common.Model.API;
 
 
@@ -15,7 +16,8 @@ namespace Structure_optimisation
     public partial class UserInterface_Check : Window
     {
         private UserInterfaceModel _model;
-    
+        private bool isDropDownOpen = false;
+
         internal UserInterface_Check(UserInterfaceModel model)
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace Structure_optimisation
         {
             try
             {
-                _model.UserFile = (string)Box_File.SelectedItem;
+                _model.UserFileCheck = (string)Box_File.SelectedItem;
                 this.Close();
             }
             catch (Exception ex)
@@ -79,6 +81,21 @@ namespace Structure_optimisation
                 MessageBox.Show(ex.Message);
                 this.Close();
             }
+        }
+        private void ComboBox_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (!isDropDownOpen)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            isDropDownOpen = true;
+        }
+        private void ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            isDropDownOpen = false;
         }
     }
 }

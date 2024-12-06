@@ -23,9 +23,6 @@ namespace Opti_Struct
             model.GetContext.PlanSetup.Course.Comment = "Dosimétrie réalisée automatiquement";
             model.GetContext.PlanSetup.Comment = "Dosimétrie réalisée automatiquement";
 
-            /*Structure CalculationVolume = model.GetContext.StructureSet.Structures.First();
-            CalculationVolume.Margin(model.GetContext.Image.XRes);
-            model.GetContext.StructureSet.RemoveStructure(CalculationVolume);*/
             if (model.UserSelection[3].ToUpper().Contains("HALCYON"))
             {
                 ConstructMyOptimizer(model);
@@ -45,9 +42,9 @@ namespace Opti_Struct
             if (model.UserSelection[2].ToUpper().Equals("IMRT"))
             {
                 model.GetContext.PlanSetup.SetCalculationOption("PO_18.0.1", "General/GpuSettings/UseGPU", "Yes");
-                model.GetContext.ExternalPlanSetup.Optimize(1);
+                model.GetContext.ExternalPlanSetup.Optimize(300);
                 model.GetContext.ExternalPlanSetup.CalculateLeafMotionsAndDose();
-                model.GetContext.ExternalPlanSetup.Optimize(1, OptimizationOption.ContinueOptimizationWithPlanDoseAsIntermediateDose);
+                model.GetContext.ExternalPlanSetup.Optimize(300, OptimizationOption.ContinueOptimizationWithPlanDoseAsIntermediateDose);
                 model.GetContext.ExternalPlanSetup.CalculateLeafMotionsAndDose();
             }
             else
@@ -117,16 +114,16 @@ namespace Opti_Struct
                             // CE
                             try
                             {
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Equals("CONTOUR EXTERNE")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 1.02, DoseValue.DoseUnit.Gy), 0, 1000);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("CONTOUR EXTERNE")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 1.02, DoseValue.DoseUnit.Gy), 0, 1000);
                             }
                             catch { }
 
-                            // Ring sein D
+                            // Ring sein
                             try
                             {
-                                model.GetContext.PlanSetup.OptimizationSetup.AddMeanDoseObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("RING SEIN") || x.Id.ToUpper().Equals("RING SEIN_AUTO")).First(), new DoseValue(35, DoseValue.DoseUnit.Gy), 150);
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("RING SEIN") || x.Id.ToUpper().Equals("RING SEIN_AUTO")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 0.95, DoseValue.DoseUnit.Gy), 0, 180);
-                                model.GetContext.PlanSetup.OptimizationSetup.AddEUDObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("RING SEIN") || x.Id.ToUpper().Equals("RING SEIN_AUTO")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 0.9, DoseValue.DoseUnit.Gy), 40, 180);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddMeanDoseObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_RING SEIN")).First(), new DoseValue(35, DoseValue.DoseUnit.Gy), 150);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_RING SEIN")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 0.95, DoseValue.DoseUnit.Gy), 0, 180);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddEUDObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_RING SEIN")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 0.9, DoseValue.DoseUnit.Gy), 40, 180);
                             }
                             catch { }
 

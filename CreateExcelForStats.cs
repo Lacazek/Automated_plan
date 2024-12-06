@@ -29,7 +29,7 @@ namespace Structure_optimisation
                 _patient = _model.GetContext.Patient;
                 _course = _model.GetContext.Course;
                 _plan = _model.GetContext.PlanSetup;
-                if (!Directory.Exists(_model.GetCheckPath + @"out"))
+                if (!Directory.Exists(Path.Combine(_model.GetCheckPath,"out")))
                     Directory.CreateDirectory(_model.GetCheckPath + @"out");
                 _excelForStats = new StreamWriter(_model.GetCheckPath + @"out\Data_" + _patient.LastName + "_" + _patient.FirstName + ".csv");
                 _excelForStats.WriteLine("patientID;courseID;planID;TotalDose;Dose/#;Fractions;Structure;Dose max; Dose moyenne; Dose mediane; Dose min");

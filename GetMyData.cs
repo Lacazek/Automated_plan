@@ -410,7 +410,7 @@ namespace DoseCheck
         #endregion
 
         #region Get and Set
-        internal string UserFile
+        internal string UserFileCheck
         {
             get { return _userFile; }
             set

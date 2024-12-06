@@ -6,6 +6,7 @@ using System.IO;
 using Image = VMS.TPS.Common.Model.API.Image;
 using static System.Net.WebRequestMethods;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Structure_optimisation
 {
@@ -15,6 +16,7 @@ namespace Structure_optimisation
     public partial class UserInterface_Dosi : Window
     {
         private UserInterfaceModel _model;
+        private bool isDropDownOpen = false;
 
         internal UserInterface_Dosi(UserInterfaceModel model)
         {
@@ -108,6 +110,67 @@ namespace Structure_optimisation
                 OK_Button.Visibility = Visibility.Visible;
             else
                 OK_Button.Visibility = Visibility.Collapsed;
+        }
+
+        private void ComboBox_PreviewMouseWheel_prescription(object sender, MouseWheelEventArgs e)
+        {
+            if (!isDropDownOpen)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ComboBox_DropDownOpened_prescription(object sender, EventArgs e)
+        {
+            isDropDownOpen = true;
+        }
+        private void ComboBox_DropDownClosed_prescription(object sender, EventArgs e)
+        {
+            isDropDownOpen = false;
+        }
+        private void ComboBox_PreviewMouseWheel_cote(object sender, MouseWheelEventArgs e)
+        {
+            if (!isDropDownOpen)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ComboBox_DropDownOpened_cote(object sender, EventArgs e)
+        {
+            isDropDownOpen = true;
+        }
+        private void ComboBox_DropDownClosed_cote(object sender, EventArgs e)
+        {
+            isDropDownOpen = false;
+        }
+        private void ComboBox_PreviewMouseWheel_technique(object sender, MouseWheelEventArgs e)
+        {
+            if (!isDropDownOpen)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ComboBox_DropDownOpened_technique(object sender, EventArgs e)
+        {
+            isDropDownOpen = true;
+        }
+        private void ComboBox_DropDownClosed_technique(object sender, EventArgs e)
+        {
+            isDropDownOpen = false;
+        }
+        private void ComboBox_PreviewMouseWheel_machine(object sender, MouseWheelEventArgs e)
+        {
+            if (!isDropDownOpen)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ComboBox_DropDownOpened_machine(object sender, EventArgs e)
+        {
+            isDropDownOpen = true;
+        }
+        private void ComboBox_DropDownClosed_machine(object sender, EventArgs e)
+        {
+            isDropDownOpen = false;
         }
     }
 }
