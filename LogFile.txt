@@ -7223,3 +7223,3190 @@ L'utilisateur à choisi de réaliser l'evaluation dosimétrique
 Fichier Log fermé
 Fin du programme : 12/6/2024 3:01:40 PM
 ***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 11:31:21 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 415166464
+User : 129391
+
+Fichier ouvert
+
+
+Changement du dossier initial, le nouveau dossier est le suivant :
+B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 11:41:15 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 11:44:29 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 499593216
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 11:45:23 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:05:40 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 669655040
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:07:28 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:11:44 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 628985856
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:13:37 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:27:29 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 352456704
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:27:45 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:31:14 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 350097408
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:31:28 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:31:35 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 504565760
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:32:18 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:37:59 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 506298368
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:39:43 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:40:39 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 501235712
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:45:04 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:45:10 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 503984128
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:46:05 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:46:12 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 510296064
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:46:30 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:48:19 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 515690496
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:48:56 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 12:49:07 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 516546560
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 12:50:12 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:01:42 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 512901120
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:01:59 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:12:43 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 690696192
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:13:04 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:20:54 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 585728000
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:21:22 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:28:28 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 591380480
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:28:45 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:32:11 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 592412672
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:32:22 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:33:15 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 591540224
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:33:37 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:34:03 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 669155328
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:34:14 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:34:34 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 578555904
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:34:47 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:36:30 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 678182912
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:36:43 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:36:56 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 679321600
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:37:07 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:37:41 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 681852928
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:37:51 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:38:27 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 683724800
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:38:48 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:40:20 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 695263232
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:40:37 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:43:58 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 663941120
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:44:12 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:47:41 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 576446464
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:47:51 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:52:19 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 604397568
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:52:30 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:52:56 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 611381248
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:53:18 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:55:14 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 689991680
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:55:25 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:56:20 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 700960768
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:56:31 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:57:05 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 707788800
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:57:20 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 1:57:28 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 709025792
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 1:57:53 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 2:03:49 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 704311296
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Dynamic Arc
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 2:04:26 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 2:08:27 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 656547840
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 2:08:43 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/9/2024 2:09:11 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 594882560
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/9/2024 2:09:23 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 9:17:08 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 657788928
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 9:17:24 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 9:22:06 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 685744128
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 9:22:21 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 9:23:32 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 692170752
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 9:23:42 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 9:25:31 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 692310016
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 9:25:41 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 9:26:13 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 693080064
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 9:26:25 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:19:12 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 742031360
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:19:32 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:23:51 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 724992000
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 10:32:41 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 591548416
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:32:55 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:33:46 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 700174336
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Droit
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:33:58 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:34:43 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 700633088
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : 
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:34:57 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:35:27 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 746164224
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:35:42 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:35:52 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 750649344
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : 3D
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:36:20 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:40:10 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 774905856
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:41:52 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:42:01 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 888582144
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:42:13 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:43:00 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 814739456
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:44:14 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:44:53 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 728580096
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 10:46:41 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 725602304
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+OAR Sein_D
+La structure sein d a été corrigée en OAR Sein_D
+
+Marge symétriques de  0 mm sur la structure : OAR Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:47:21 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:47:29 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 826740736
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : HALCYON1:HALCYON1
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:47:41 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:49:25 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 825671680
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:49:52 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:50:49 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 821821440
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 10:54:34 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 10:54:49 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 722735104
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 11:05:38 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 11:27:37 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 593453056
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 11:29:07 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 557772800
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 11:34:10 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 11:39:30 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 645672960
+User : 129391
+
+Fichier ouvert
+
+
+**********************************
+Debut de programme : 12/10/2024 11:39:36 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 538128384
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 11:43:11 AM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 11:46:55 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 593616896
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 11:50:11 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 570155008
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 11:57:12 AM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 470003712
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 12:01:01 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 12:02:01 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 647421952
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 12:02:54 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 466976768
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 12:03:43 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 562147328
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 12:04:40 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 463249408
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 12:08:39 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 12:10:29 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 607223808
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 12:18:07 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 561315840
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+
+**********************************
+Debut de programme : 12/10/2024 12:28:15 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 550166528
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 12:28:30 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 12:33:38 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 667602944
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 12:53:33 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 12:59:44 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 680439808
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 1:00:08 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 1:02:28 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 662179840
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : Arcthérapie
+Machine : TRUEBEAM2
+
+Fichier Log fermé
+Fin du programme : 12/10/2024 1:13:30 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/10/2024 4:05:59 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 679497728
+User : 129391
+
+Fichier ouvert
+
+
+**********************************
+Debut de programme : 12/10/2024 4:06:40 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 582639616
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : C_PELVIS+GG
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\C_PELVIS+GG.txt
+
+La cible n°1 choisie est : 
+PTV T
+La cible n°2 choisie est : 
+PTV N
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Création du contour externe ; seuil défini à : -350 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure z_PTV T
+********** Operation simple **********
+Structure attendue : PTV T 
+Marge symétriques de  0 mm sur la structure : PTV T
+Structure z_PTV T créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_PTV N
+********** Operation simple **********
+Structure attendue : PTV N 
+Marge symétriques de  0 mm sur la structure : PTV N
+Structure z_PTV N créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV TOT
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple |
+Structures attendues : z_ptv t  et  z_ptv n
+Accès refusé. Impossible de modifier Structure 'Dosi_auto / PTV tot' car il (elle) est approuvée(e).
+La structure de l'utilisateur est ajoutée vide
+Indice erreur : 4
+Une erreur est survenue sur la structure PTV TOT : Accès refusé. Impossible de modifier Structure 'Dosi_auto / PTV tot' car il (elle) est approuvée(e).
+
+**********************************************************************************************************
+
+Travail sur la structure z_OV vessie
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : vessie  et  ptv tot
+Operation sur les structures : Vessie et PTV tot
+Structure z_OV vessie créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_OV rectum
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : rectum  et  ptv tot
+Operation sur les structures : Rectum et PTV tot
+Structure z_OV rectum créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_PTV N_opt
+********** Operation multiple **********
+Structure attendue : z_ptv n 
+Structure attendue :  z_ptv t 
+Structure attendue :  vessie 
+Structure attendue :  rectum
+Operation sur les structures : z_PTV N_opt et z_PTV T
+Structure z_PTV N_opt créée
+Operation sur les structures : z_PTV N_opt et Rectum
+Structure z_PTV N_opt créée
+
+**********************************************************************************************************
+
+Travail sur la structure test
+********** Operation simple **********
+Structure attendue : ptv tot 
+Marge symétriques de  3 mm sur la structure : PTV tot
+Structure test créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_Vessie_opt
+********** Operation multiple **********
+Structure attendue : vessie 
+Structure attendue :  ptv tot 
+Structure attendue :  test
+Operation sur les structures : z_Vessie_opt et PTV tot
+Structure z_Vessie_opt créée
+Operation sur les structures : z_Vessie_opt et test
+Structure z_Vessie_opt créée
+
+**********************************************************************************************************
+
+Travail sur la structure test
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure z_opt post
+********** Operation simple **********
+Operation simple : création de structure vide
+Création de structure
+Structure z_opt post créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_opt inter
+********** Operation simple **********
+Operation simple : création de structure vide
+Création de structure
+Structure z_opt inter créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_opt haut
+********** Operation simple **********
+Operation simple : création de structure vide
+Création de structure
+Structure z_opt haut créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : epaisse
+z_PTV T : cible1 ! 0
+z_PTV N : cible2 ! 0
+PTV TOT : z_ptv t | z_ptv n
+z_OV vessie : vessie & ptv tot
+z_OV rectum : rectum & ptv tot
+z_PTV N_opt : z_ptv n # z_ptv t # vessie # rectum
+test : ptv tot ! 3
+z_Vessie_opt : vessie # ptv tot # test
+test : /
+z_opt post :
+z_opt inter :
+z_opt haut :
+
+Détail du fichier de fin :
+
+verbose : 0
+table : epaisse
+z_PTV T : PTV T ! 0
+z_PTV N : PTV N ! 0
+PTV TOT : z_ptv t | z_ptv n
+z_OV vessie : vessie & ptv tot
+z_OV rectum : rectum & ptv tot
+z_PTV N_opt : z_ptv n # z_ptv t # vessie # rectum
+test : ptv tot ! 3
+z_Vessie_opt : vessie # ptv tot # test
+test : /
+z_opt post :
+z_opt inter :
+z_opt haut :
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+

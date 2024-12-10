@@ -31,93 +31,145 @@ namespace Opti_Struct
 
         internal void CreateBeams(UserInterfaceModel model)
         {
-            //try
-            //{
-            // Check table Halcyon
-            IsThereCouch(model);
-
-            // Prescription
-            AddPrescription(model);
-
-            // Point de ref
-            model.GetContext.PlanSetup.AddReferencePoint(true, null, "AutoPoint");
-            model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
-            model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-            model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-
-            //Imagerie
-            ImagingBeamSetupParameters ImageParameters = new ImagingBeamSetupParameters(ImagingSetup.kVCBCT, 140, 140, 140, 140, 280, 280);
-
-            // Paramètre DRR (taille [mm],pondération, fenetre scan de , fenêtre scan à, découpe de, découpe à)
-            DRRCalculationParameters DRR = new DRRCalculationParameters(500, 1, -450, 150, 2, 6);
-
-            // Isocentre
-            // Demander utilisateur la target ID ????
-            _target = model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
-            _isocenter = model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(_target.Id)).CenterPoint;
-
-            // Paramètres faisceaux
-            ExternalBeamMachineParameters BeamParameters = new ExternalBeamMachineParameters(
-                    model.UserSelection[3].ToUpper().Contains("HALCYON") ? model.UserSelection[3].Split(':')[0] : model.UserSelection[3],
-                    model.UserSelection[3].ToUpper().Contains("HALCYON") ? "6X-FFF" : "6X",
-                    model.UserSelection[3].ToUpper().Contains("HALCYON") ? 740 : 600,
-                    model.UserSelection[2].ToUpper().Contains("IMRT") || model.UserSelection[2].ToUpper().Contains("3D") ? "STATIC" : "ARC",
-                    model.UserSelection[3].ToUpper().Contains("HALCYON") ? "FFF" : "WFF");
-
-            // Angles
-            SetAngles(model, BeamParameters);
-
-            // Beams
-            if (model.UserSelection[2].Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
+            try
             {
-                // évaluer ici 
-                _gantryAngle = _gantryAngle + 10;
+                // Check table Halcyon
+                IsThereCouch(model);
 
-                model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
-                model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
-                model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
+                // Prescription
+                AddPrescription(model);
 
-                if (model.UserSelection[1].Contains("Droit"))
+                // Point de ref
+                model.GetContext.PlanSetup.AddReferencePoint(true, null, "AutoPoint");
+                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
+                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+
+                //Imagerie
+                ImagingBeamSetupParameters ImageParameters = new ImagingBeamSetupParameters(ImagingSetup.kVCBCT, 140, 140, 140, 140, 280, 280);
+
+                // Paramètre DRR (taille [mm],pondération, fenetre scan de , fenêtre scan à, découpe de, découpe à)
+                DRRCalculationParameters DRR = new DRRCalculationParameters(500, 1, -450, 150, 2, 6);
+
+                // Isocentre
+                // Demander utilisateur la target ID ????
+                _target = model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
+                _isocenter = model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(_target.Id)).CenterPoint;
+
+                // Paramètres faisceaux
+                ExternalBeamMachineParameters BeamParameters = new ExternalBeamMachineParameters(
+                        model.UserSelection[3].ToUpper().Contains("HALCYON") ? model.UserSelection[3].Split(':')[0] : model.UserSelection[3],
+                        model.UserSelection[3].ToUpper().Contains("HALCYON") ? "6X" : model.GetContext.ExternalPlanSetup.DosePerFraction.Dose > 4 ? "6X-FFF" : "6X",
+                        model.UserSelection[3].ToUpper().Contains("HALCYON") ? 740 : model.GetContext.ExternalPlanSetup.DosePerFraction.Dose > 4 ? 1400 : 600,
+                        model.UserSelection[2].ToUpper().Contains("IMRT") || model.UserSelection[2].ToUpper().Contains("3D") ? "STATIC" : "ARC",
+                        model.UserSelection[3].ToUpper().Contains("HALCYON") ? "FFF" : model.GetContext.ExternalPlanSetup.DosePerFraction.Dose > 4 ? "FFF" : null);
+
+                // Angles
+                SetAngles(model, BeamParameters);
+
+                // Beams
+                #region IMRT
+                if (model.UserSelection[2].Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
                 {
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 180, _isocenter);
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);
+                    // évaluer ici 
+                    _gantryAngle = _gantryAngle + 10;
+
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
+
+                    if (model.UserSelection[1].Contains("Droit"))
+                    {
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 180, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);
+                    }
+                    else
+                    {
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 180, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 190, _isocenter);
+                    }
+
+                    foreach (var (b, index) in model.GetContext.PlanSetup.Beams.Select((b, index) => (b, index)))
+                    {
+                        // ajouter tolérances table  b.set
+                        if (!b.IsSetupField)
+                            b.Id = index < 3 ? "TGI " + (11 + index) : "TGE " + (11 + index - 3);
+                    }
                 }
-                else
+                #endregion
+
+                #region ARC
+                else if (model.UserSelection[2].Contains("Arcthérapie") || model.UserSelection[2].Contains("Dynamic Arc") || model.UserSelection[2].Contains("Stéréotaxie"))
                 {
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 180, _isocenter);
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle - 190, _isocenter);
+
+                    int gantryStart = model.UserSelection[1].Contains("Gauche") ? 179 : model.UserSelection[1].Contains("Droit") ? 181 : 181;
+                    int gantryEnd = model.UserSelection[1].Contains("Gauche") ? 0 : model.UserSelection[1].Contains("Droit") ? 0 : 179;
+                    var firstDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.CounterClockwise : GantryDirection.Clockwise;
+                    var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
+
+                    double[] metersetWeight = new double[101];
+                    for (int i = 0; i < 101; i++)
+                    {
+                        metersetWeight[i] = (1.0 / 100.0) * i;
+                    }
+
+                    if (model.UserSelection[3].ToUpper().Contains("HALCYON"))
+                    {
+                        float[,] leaves = new float[2, 57];
+
+                    for (int i = 0; i < 57; i++)
+                    {
+                        leaves[0, i] = -10;
+                        leaves[1, i] = 10;
+                    }
+
+                        VRect<double> jaws = new VRect<double>(0, 0, 0, 0);
+                        model.GetContext.ExternalPlanSetup.AddMLCArcBeam(BeamParameters, leaves, jaws, _collimatorAngle, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddMLCArcBeam(BeamParameters, leaves, jaws, 360 - _collimatorAngle, gantryEnd, gantryStart, secondDirection, 0, _isocenter);              
+                    }
+                    else
+                    {
+                        VRect<double> jaws = new VRect<double>(20, 20,20, 20);
+
+                        float[,] leaves = new float[2, 60];
+
+                        for (int i = 0; i < 60; i++)
+                        {
+                            leaves[0, i] = -10;
+                            leaves[1, i] = 10;
+                        }
+
+                        model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, _collimatorAngle, 180, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, 360 - _collimatorAngle, 180, gantryEnd, gantryStart, secondDirection, 0, _isocenter);
+                        model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(), _target, true, true, false));
+                        model.GetContext.ExternalPlanSetup.OptimizationSetup.UseJawTracking = true;
+                    }
+
+                    foreach (var (b, index) in model.GetContext.PlanSetup.Beams.Select((b, index) => (b, index)))
+                    {
+                        // ajouter tolérances table  b.set
+                        if (!b.IsSetupField)
+                            b.Id = "Arc 1" + (index +1);
+                    }
+                }
+                #endregion
+
+                else // Bug sur le 3D
+                {
+                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle, 1, _isocenter);
+                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle + 180, 1, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 180, _isocenter);
                 }
 
-                foreach (var (b, index) in model.GetContext.PlanSetup.Beams.Select((b, index) => (b, index)))
-                {
-                    // ajouter tolérances table  b.set
-                    if (!b.IsSetupField)
-                        b.Id = index < 3 ? "TGI " + (11 + index) : "TGE " + (11 + index - 3);
-                }
+                model.GetContext.ExternalPlanSetup.AddImagingSetup(BeamParameters, ImageParameters, model.GetContext.StructureSet.Structures.First(st => st.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)));
+                model.GetContext.PlanSetup.Beams.First(x => x.IsSetupField).CreateOrReplaceDRR(DRR);
+
             }
-
-            else if (model.UserSelection[2].Contains("Arcthérapie") || model.UserSelection[2].Contains("Dynamic Arc") || model.UserSelection[2].Contains("Stéréotaxie"))
+            catch (Exception ex)
             {
-                // Checker si c'est bine conformal arc beam pour le VMAT
-                model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, _collimatorAngle, 180, 179, 181, GantryDirection.CounterClockwise, 0, _isocenter);
-                model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, 360 - _collimatorAngle, 180, 181, 179, GantryDirection.Clockwise, 0, _isocenter);
+                MessageBox.Show($"Erreur dans la création des faisceaux\n {ex.Message}");
             }
-
-            else if (model.UserSelection[2].Contains("3D"))
-            {
-
-                model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle, 1, _isocenter);
-                model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle + 180, 1, _isocenter);
-            }
-
-            model.GetContext.ExternalPlanSetup.AddImagingSetup(BeamParameters, ImageParameters, model.GetContext.StructureSet.Structures.First(st => st.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)));
-            model.GetContext.PlanSetup.Beams.First(x => x.IsSetupField).CreateOrReplaceDRR(DRR);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Erreur dans la création des faisceaux\n {ex.Message}");
-            //}
         }
 
         internal void SetAngles(UserInterfaceModel model, ExternalBeamMachineParameters BeamParameters)
@@ -172,7 +224,6 @@ namespace Opti_Struct
                     }
                     index++;
                     model.GetContext.ExternalPlanSetup.RemoveBeam(beam_colli);
-
                 }
 
                 index = 0;

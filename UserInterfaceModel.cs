@@ -69,8 +69,12 @@ namespace Structure_optimisation
             Message = $"User : {Environment.UserName}\n";
             Message = $"Fichier ouvert\n";
 
-            UserInterface_Volume interfaceVolume = new UserInterface_Volume(this);
-            interfaceVolume.ShowDialog();
+            if (MessageBox.Show("Voulez-vous lancer l'autocontour ?\n\nSi vous sélectionnez NO\nIl est possible que la suite du programme ne fonctionne pas correctement\n\n" +
+                "Si vous sélectionnez YES\nLes contours d'optimisations seront réalisés automatiquement", "Information", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                UserInterface_Volume interfaceVolume = new UserInterface_Volume(this);
+                interfaceVolume.ShowDialog();
+            }
 
             if (MessageBox.Show("Voulez-vous lancer l'autoplanning ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -97,6 +101,8 @@ namespace Structure_optimisation
                     };
                 };
             };
+
+            context.ExternalPlanSetup.Name = _userSelection[0]+" " + _userSelection[1] + " " + context.ExternalPlanSetup.TotalDose.ToString()+"Gy";
         }
 
         internal void LaunchPlanning()
@@ -109,10 +115,6 @@ namespace Structure_optimisation
             _dosimetry.LaunchDosimetry(this);
         }
 
-        internal void LaunchCheck()
-        {
-
-        }
         internal void FillList()
         {
             foreach (var item in Directory.GetFiles(_file.GetVolumePath))
