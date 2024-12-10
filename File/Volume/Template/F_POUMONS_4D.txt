@@ -1,0 +1,26 @@
+verbose : 0
+table : moyenne
+z_PTV : cible1 ! 0
+z_PTV-ITV : cible1 # cible2
+z_ITV : cible2 ! 0
+z_ring1 : z_ptv ! 5
+z_ring2 : z_ptv ! 10
+z_ring3 : z_ptv ! 30
+z_ring3 : z_ring3 # z_ring2
+z_ring2 : z_ring2 # z_ring1
+z_ring1 : z_ring1 # z_ptv
+test : z_ptv ! 35
+z_ring :  z_ptv ! 18 
+z_ring : z_ring # test
+test : /
+test : z_ptv ! 3
+z_paroi opt : paroi thoracique # test
+z_trachee opt : trachee # test
+z_oeso opt : oesophage # test
+z_Poumons-PTV : poumons # test
+z_PoumonD-PTV : poumon d # test
+z_PoumonG-PTV : poumon g # test
+z_coeur-PTV : coeur # test
+PRV Moelle +2 : moelle ! 2
+PRV Moelle +5 : moelle ! 5
+test : /

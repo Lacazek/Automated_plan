@@ -1,0 +1,20 @@
+verbose : 0
+table : epaisse
+PTV 2 : cible1 ! 5
+PTV 1 : cible2 ! 10
+PTV 1 : ptv 1 | ptv 2
+z_PTV 1 : ptv 1 ! 0
+z_PTV 2 : ptv 2 ! 0
+z_PTV2-OV : z_ptv 2 # vessie # rectum
+z_OV vessie : vessie & z_ptv 2
+z_OV rectum : rectum & z_ptv 2
+test : ptv tot ! 3
+z_Vessie : vessie # test
+z_Rectum : rectum # test
+test : /
+z_PTV 1 proche : z_ptv 2 ! 15.00
+z_PTV 1 proche : z_ptv 1 proche # z_ptv 2 & z_ptv 1
+z_PTV 1 loin :  ptv tot # z_ptv 1 proche # z_ptv 2
+z_opt post :
+z_opt inter :
+z_opt haut :

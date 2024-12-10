@@ -1,0 +1,40 @@
+verbose : 0
+table : moyenne
+externe +7mm : contour externe ! 7
+externe -7mm : contour externe ! -7
+PTV Sein G : ctv sein g ! 7
+PTV Susclav G : ctv n sus clav g ! 7
+PTV Sousclav G : ctv n sous clav g ! 7
+PTV Axil G : ctv n axil g ! 7
+PTV CMI G : ctv cmi g ! 7
+PTV Boost : ctv lit tum ! 7
+z_ring Boost : ptv boost ! 10
+test : ptv boost ! 3
+z_ring Boost : z_ring boost # test
+test : /
+test : contour externe ! -5
+z_CTV seinG -5 : ctv sein g & test
+z_PTV seinG -5 : ptv sein g & test
+test : /
+PTV total : ptv sein g ! 0
+PTV total : ptv total | ptv cmi g
+PTV total : ptv total | ptv susclav g
+PTV total : ptv total | ptv sousclav g
+PTV total : ptv total | ptv axil g
+test : contour externe ! -5
+PTV total : PTV total # test
+test : /
+PTV 50 : ptv sein g ! 0
+PTV 50 : ptv 50 | ptv cmi g
+PTV 50 : ptv 50 | ptv axil d
+PTV 46 : ptv susclav g | ptv sousclav g
+test : ptv sein g ! 3 
+z_ring 1 : ptv sein g ! 25
+z_ring 2 : ptv sein g ! 48
+z_ring 2 : z_ring 2 # z_ring 1
+z_ring 1 : z_ring 1 # test
+test : /
+test : ptv cmi  ! 3
+z_Coeur opt : coeur # test
+test : /
+z_billes :
