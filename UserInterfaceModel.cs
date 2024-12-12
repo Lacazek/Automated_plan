@@ -1,18 +1,39 @@
-﻿using System;
+﻿/******************************************************************************
+ * Nom du fichier : UserInterfaceModel.cs
+ * Auteur         : LACAZE Killian
+ * Date de création : [02/10/2024]
+ * Description    : [Brève description du contenu ou de l'objectif du code]
+ *
+ * Droits d'auteur © [2024], [LACAZE.K].
+ * Tous droits réservés.
+ * 
+ * Ce code a été développé exclusivement par LACAZE Killian. Toute utilisation de ce code 
+ * est soumise aux conditions suivantes :
+ * 
+ * 1. L'utilisation de ce code est autorisée uniquement à titre personnel ou professionnel, 
+ *    mais sans modification de son contenu.
+ * 2. Toute redistribution, copie, ou publication de ce code sans l'accord explicite 
+ *    de l'auteur est strictement interdite.
+ * 3. L'auteur assume la responsabilité de l'utilisation de ce code dans ses propres projets.
+ * 
+ * CE CODE EST FOURNI "EN L'ÉTAT", SANS AUCUNE GARANTIE, EXPRESSE OU IMPLICITE. 
+ * L'AUTEUR DÉCLINE TOUTE RESPONSABILITÉ POUR TOUT DOMMAGE OU PERTE RÉSULTANT 
+ * DE L'UTILISATION DE CE CODE.
+ *
+ * Toute utilisation non autorisée ou attribution incorrecte de ce code est interdite.
+ ******************************************************************************/
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using VMS.TPS.Common.Model.API;
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using Opti_Struct;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Windows.Media.Media3D;
-using System.Runtime.InteropServices;
 using DoseCheck;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Structure_optimisation
 {
@@ -75,6 +96,9 @@ namespace Structure_optimisation
                 UserInterface_Volume interfaceVolume = new UserInterface_Volume(this);
                 interfaceVolume.ShowDialog();
             }
+            else
+                Message = $"L'utilisateur n'a pas choisi de réaliser l'autocontour\n";
+
 
             if (MessageBox.Show("Voulez-vous lancer l'autoplanning ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -82,37 +106,68 @@ namespace Structure_optimisation
                 Message = $"L'utilisateur à choisi de réaliser l'autoplanning\n";
                 UserInterface_Dosi Interface_dosi = new UserInterface_Dosi(this);
                 Interface_dosi.ShowDialog();
+            }
+            else
+                Message = $"L'utilisateur n'a pas choisi de réaliser l'autoplanning\n";
 
-                //Améliorer fichier log
 
-                if (MessageBox.Show("Voulez-vous lancer l'évaluation de plan ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    Message = $"\n\n**************************************************";
-                    Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique\n";
-                    _getMyData = new GetMyData(this);
-                    UserInterface_Check Interface_check = new UserInterface_Check(this);
-                    Interface_check.ShowDialog();
+            //Améliorer fichier log
 
-                    //Améliorer fichier log
+            if (MessageBox.Show("Voulez-vous lancer l'évaluation de plan ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes
+                && GetContext.ExternalPlanSetup.IsDoseValid)
+            {
+                Message = $"\n\n**************************************************";
+                Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique\n";
+                _getMyData = new GetMyData(this);
+                UserInterface_Check Interface_check = new UserInterface_Check(this);
+                Interface_check.ShowDialog();
+            }
+            else
+                Message = $"L'utilisateur n'a pas choisi de réaliser l'évaluation de plan\n";
 
-                    if (MessageBox.Show("Voulez-vous lancer le transfert des données ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
+            //Améliorer fichier log
 
-                    };
-                };
-            };
+            if (MessageBox.Show("Voulez-vous lancer le transfert des données ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
 
-            context.ExternalPlanSetup.Name = _userSelection[0]+" " + _userSelection[1] + " " + context.ExternalPlanSetup.TotalDose.ToString()+"Gy";
+            }
+            else
+                Message = $"L'utilisateur n'a pas choisi de réaliser le transfert automatique des données\n";
+
+            try
+            {
+                context.ExternalPlanSetup.Id = _userSelection == null ?
+                    (_userSelection[0] + " " + _userSelection[1] + " " + context.ExternalPlanSetup.TotalDose.ToString() + "Gy").Length < 16 ?
+                     _userSelection[0] + " " + _userSelection[1] + " " + context.ExternalPlanSetup.TotalDose.ToString() + "Gy" : "Autom_plan" : "Auto_plan";
+                Message = $"Modification du nom de plan réalisée avec succés\n";
+            }
+            catch (Exception ex)
+            {              
+                Message = $"Impossibilité de modifier le nom du plan\n";
+                Message += ex.Message;
+            }
         }
-
+        
         internal void LaunchPlanning()
         {
             // 1 Création des contours --> getFile-> CreateVolume
             _file.CreateUserDosimetryFile(this);
             // 2 Création des faisceaux --> Beams
-            _beams.CreateBeams(this);
-            //3 Paramétrages de la dosi --> Dosimetry
-            _dosimetry.LaunchDosimetry(this);
+            if (MessageBox.Show("Voulez-vous créer les faisceaux? ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Message = $"L'utilisateur à choisi de réaliser automatiquement les faisceaux\n";
+                _beams.CreateBeams(this);
+                if (MessageBox.Show("Voulez-vous lancer la dosimétrie ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    Message = $"L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation\n";
+                    //3 Paramétrages de la dosi --> Dosimetry
+                    _dosimetry.LaunchDosimetry(this);
+                }
+                else
+                    Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement ni la dosimétrie ni le remplissage automatique des pré-contraintes dosimétriques";
+            }
+            else
+                Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement la mise en place des faisceaux";
         }
 
         internal void FillList()
@@ -177,6 +232,7 @@ namespace Structure_optimisation
         }
         internal List<string> Targets
         {
+            get { return _file.Targets; }
             set { _file.Targets = value; }
         }
         internal List<string> UserSelection

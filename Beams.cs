@@ -1,20 +1,38 @@
-﻿using Structure_optimisation;
+﻿/******************************************************************************
+ * Nom du fichier : Beams.cs
+ * Auteur         : LACAZE Killian
+ * Date de création : [02/10/2024]
+ * Description    : [Brève description du contenu ou de l'objectif du code]
+ *
+ * Droits d'auteur © [2024], [LACAZE.K].
+ * Tous droits réservés.
+ * 
+ * Ce code a été développé exclusivement par LACAZE Killian. Toute utilisation de ce code 
+ * est soumise aux conditions suivantes :
+ * 
+ * 1. L'utilisation de ce code est autorisée uniquement à titre personnel ou professionnel, 
+ *    mais sans modification de son contenu.
+ * 2. Toute redistribution, copie, ou publication de ce code sans l'accord explicite 
+ *    de l'auteur est strictement interdite.
+ * 3. L'auteur assume la responsabilité de l'utilisation de ce code dans ses propres projets.
+ * 
+ * CE CODE EST FOURNI "EN L'ÉTAT", SANS AUCUNE GARANTIE, EXPRESSE OU IMPLICITE. 
+ * L'AUTEUR DÉCLINE TOUTE RESPONSABILITÉ POUR TOUT DOMMAGE OU PERTE RÉSULTANT 
+ * DE L'UTILISATION DE CE CODE.
+ *
+ * Toute utilisation non autorisée ou attribution incorrecte de ce code est interdite.
+ ******************************************************************************/
+
+
+using Structure_optimisation;
 using System;
 using System.IO;
 using System.Windows;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 using System.Text.RegularExpressions;
-using System.Windows.Media.Media3D;
-using System.Reflection;
-using System.Windows.Input;
-using System.Security.Cryptography;
 
 namespace Opti_Struct
 {
@@ -33,28 +51,41 @@ namespace Opti_Struct
         {
             try
             {
+                model.Message = $"\n*************************Partie faisceaux*************************\n";
                 // Check table Halcyon
                 IsThereCouch(model);
+                model.Message = $"Table insérée";
 
                 // Prescription
                 AddPrescription(model);
+                model.Message = $"Prescription complétée";
 
                 // Point de ref
                 model.GetContext.PlanSetup.AddReferencePoint(true, null, "AutoPoint");
                 model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
                 model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
                 model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                model.Message = $"Point de référence généré et remplie";
 
                 //Imagerie
                 ImagingBeamSetupParameters ImageParameters = new ImagingBeamSetupParameters(ImagingSetup.kVCBCT, 140, 140, 140, 140, 280, 280);
+                model.Message = $"Paramètres d'imagerie générés'";
 
                 // Paramètre DRR (taille [mm],pondération, fenetre scan de , fenêtre scan à, découpe de, découpe à)
                 DRRCalculationParameters DRR = new DRRCalculationParameters(500, 1, -450, 150, 2, 6);
+                model.Message = $"Paramètres de DRR générés";
 
                 // Isocentre
-                // Demander utilisateur la target ID ????
-                _target = model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
+                try
+                {
+                    _target = model.GetContext.StructureSet.Structures.Where(s => model.Targets.Any(target => target.Equals(s.Id))).OrderByDescending(s => s.Volume).FirstOrDefault();
+                }
+                catch
+                {
+                    _target= model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
+                }
                 _isocenter = model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(_target.Id)).CenterPoint;
+                model.Message = $"L'isocentre est placé au barycentre du volume : {_target.Id}";
 
                 // Paramètres faisceaux
                 ExternalBeamMachineParameters BeamParameters = new ExternalBeamMachineParameters(
@@ -67,6 +98,14 @@ namespace Opti_Struct
                 // Angles
                 SetAngles(model, BeamParameters);
 
+                model.Message = $"Optimisation de l'angle du bras et du collimateur réalisée";
+
+                double[] metersetWeight = new double[101];
+                for (int i = 0; i < 101; i++)
+                {
+                    metersetWeight[i] = (1.0 / 100.0) * i;
+                }
+
                 // Beams
                 #region IMRT
                 if (model.UserSelection[2].Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
@@ -77,11 +116,11 @@ namespace Opti_Struct
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
-
+                    
                     if (model.UserSelection[1].Contains("Droit"))
                     {
                         model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 180, _isocenter);
-                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);                       
                     }
                     else
                     {
@@ -93,8 +132,12 @@ namespace Opti_Struct
                     {
                         // ajouter tolérances table  b.set
                         if (!b.IsSetupField)
+                        {
                             b.Id = index < 3 ? "TGI " + (11 + index) : "TGE " + (11 + index - 3);
+                            b.FitMLCToStructure(_target);
+                        }
                     }
+                    model.Message = $"Balistique IMRT associée correctement";
                 }
                 #endregion
 
@@ -107,41 +150,16 @@ namespace Opti_Struct
                     var firstDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.CounterClockwise : GantryDirection.Clockwise;
                     var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
 
-                    double[] metersetWeight = new double[101];
-                    for (int i = 0; i < 101; i++)
-                    {
-                        metersetWeight[i] = (1.0 / 100.0) * i;
-                    }
-
                     if (model.UserSelection[3].ToUpper().Contains("HALCYON"))
-                    {
-                        float[,] leaves = new float[2, 57];
-
-                    for (int i = 0; i < 57; i++)
-                    {
-                        leaves[0, i] = -10;
-                        leaves[1, i] = 10;
-                    }
-
-                        VRect<double> jaws = new VRect<double>(0, 0, 0, 0);
-                        model.GetContext.ExternalPlanSetup.AddMLCArcBeam(BeamParameters, leaves, jaws, _collimatorAngle, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
-                        model.GetContext.ExternalPlanSetup.AddMLCArcBeam(BeamParameters, leaves, jaws, 360 - _collimatorAngle, gantryEnd, gantryStart, secondDirection, 0, _isocenter);              
+                    {             
+                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters,metersetWeight, _collimatorAngle, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters,metersetWeight, 360 - _collimatorAngle, gantryEnd, gantryStart, secondDirection, 0, _isocenter);                        
                     }
                     else
                     {
-                        VRect<double> jaws = new VRect<double>(20, 20,20, 20);
-
-                        float[,] leaves = new float[2, 60];
-
-                        for (int i = 0; i < 60; i++)
-                        {
-                            leaves[0, i] = -10;
-                            leaves[1, i] = 10;
-                        }
-
                         model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, _collimatorAngle, 180, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
                         model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, 360 - _collimatorAngle, 180, gantryEnd, gantryStart, secondDirection, 0, _isocenter);
-                        model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(), _target, true, true, false));
+                        model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(5), _target, true, true, false));
                         model.GetContext.ExternalPlanSetup.OptimizationSetup.UseJawTracking = true;
                     }
 
@@ -149,21 +167,37 @@ namespace Opti_Struct
                     {
                         // ajouter tolérances table  b.set
                         if (!b.IsSetupField)
-                            b.Id = "Arc 1" + (index +1);
+                            b.Id = "Arc 1" + (index + 1);
                     }
+                    model.Message = $"Balistique Arcthérapie associée correctement";
                 }
                 #endregion
 
-                else // Bug sur le 3D
+                else 
                 {
-                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle, 1, _isocenter);
-                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(100, 100, 100, 100), _collimatorAngle, _gantryAngle + 180, 1, _isocenter);
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
-                    model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 180, _isocenter);
+                    //OK
+                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(0, 0, 0, 0), _collimatorAngle, _gantryAngle, 1, _isocenter);
+                    //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(0, 0, 0, 0), _collimatorAngle, _gantryAngle + 180, 1, _isocenter);
+
+
+                    // A évaluer ici
+                    float[,] leaves = new float[2, 60];
+
+                    for (int i = 0; i < 60; i++)
+                    {
+                        leaves[0, i] = -10;
+                        leaves[1, i] = 10;
+                    }
+
+                    model.GetContext.ExternalPlanSetup.AddMLCBeam(BeamParameters, leaves, new VRect<double>(0, 0, 0, 0), _collimatorAngle, _gantryAngle, 1, _isocenter);
+                    model.GetContext.ExternalPlanSetup.AddMLCBeam(BeamParameters, leaves, new VRect<double>(0, 0, 0, 0), _collimatorAngle, _gantryAngle + 180, 1, _isocenter);
+                    model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(7), _target, true, true, true));
+                    model.Message = $"Balistique 3D associée correctement";
                 }
 
                 model.GetContext.ExternalPlanSetup.AddImagingSetup(BeamParameters, ImageParameters, model.GetContext.StructureSet.Structures.First(st => st.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)));
                 model.GetContext.PlanSetup.Beams.First(x => x.IsSetupField).CreateOrReplaceDRR(DRR);
+                model.Message = $"KVCBCT mis à jour avec succés";
 
             }
             catch (Exception ex)
