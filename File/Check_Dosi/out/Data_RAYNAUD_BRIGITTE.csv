@@ -1,0 +1,6 @@
+patientID;courseID;planID;TotalDose;Dose/#;Fractions;Structure;Dose max; Dose moyenne; Dose mediane; Dose min
+000000056070;TTT pelvis;test_2;50.000 Gy;2.000 Gy;25;Cavite_peritonea ;18.073 Gy;51.07 Gy;51.07 Gy;17.67 Gy;18.4 Gy;1.45 Gy;869.26 cc;44.364 Gy;25.35 Gy
+000000056070;TTT pelvis;test_2;50.000 Gy;2.000 Gy;25;femur D ;27.98 Gy;13.37 Gy;14.44 Gy;2.23 Gy;0 %;163.3 cc;27.98 Gy
+000000056070;TTT pelvis;test_2;50.000 Gy;2.000 Gy;25;femur G ;28.9 Gy;14.07 Gy;15.24 Gy;2.24 Gy;0 %;161.3 cc;28.9 Gy
+000000056070;TTT pelvis;test_2;50.000 Gy;2.000 Gy;25;Rectum ;52.23 Gy;52.23 Gy;38.86 Gy;39.22 Gy;21.39 Gy;74.68 cc;0 %;0 %
+000000056070;TTT pelvis;test_2;50.000 Gy;2.000 Gy;25;Vessie ;49.6 Gy;49.6 Gy;22.21 Gy;17.13 Gy;8.59 Gy;182.46 cc;0 %;0 %

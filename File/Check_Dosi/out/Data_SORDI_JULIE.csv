@@ -1,0 +1,12 @@
+patientID;courseID;planID;TotalDose;Dose/#;Fractions;Structure;Dose max; Dose moyenne; Dose mediane; Dose min
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Art_Coro_Prin_G ;14.51 Gy;11.92 Gy;11.83 Gy;9.68 Gy;0 %;0.24 cc
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Coeur ;20.62 Gy;7.6 Gy;7.6 Gy;7.79 Gy;0.63 Gy;477.4 cc;20.625 Gy;17.225 Gy;0.01 %;0 %;6.54 %;18.551 Gy;6.54 %;18.551 Gy
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Foie ;5.14 Gy;0.65 Gy;0.65 Gy;0.53 Gy;0.07 Gy;1059.91 cc;1.479 Gy
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;iso ;NaN %;NaN Gy
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Moelle ;0.635 Gy;0.64 Gy;0.34 Gy;0.32 Gy;0.06 Gy;53.02 cc
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Oesophage ;15.85 Gy;1.07 Gy;0.93 Gy;0.3 Gy;0 %;32.47 cc
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Poumon_D ;0.978 Gy;49.27 Gy;10.04 Gy;2.19 Gy;0.27 Gy;1967.48 cc;20.772 Gy;30.804 Gy;39.08 %;21.28 %;10.54 %;39.08 %;21.28 %;10.54 %
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Poumon_G ;0.42 Gy;15.04 Gy;2.9 Gy;0.76 Gy;0.16 Gy;1682.39 cc;6.538 Gy;8.545 Gy;26.7 %;0 %;0 %;26.7 %;0 %;0 %
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Sein contro_auto ;23.004 Gy;23 Gy;5.99 Gy;5.93 Gy;0.5 Gy;386.94 cc;23.004 Gy
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Sein_D ;52.59 Gy;49.27 Gy;49.27 Gy;50.37 Gy;29.88 Gy;359.35 cc
+0000121100;SEIN DT 2024;Auto_plan;50.000 Gy;2.000 Gy;25;Tete_Humerus_G ;0.259 Gy;0.26 Gy;0.17 Gy;0.17 Gy;0.08 Gy;55.58 cc
