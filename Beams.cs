@@ -33,6 +33,7 @@ using System.Linq;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 using System.Text.RegularExpressions;
+using System.Net.Configuration;
 
 namespace Opti_Struct
 {
@@ -52,6 +53,15 @@ namespace Opti_Struct
             try
             {
                 model.Message = $"\n*************************Partie faisceaux*************************\n";
+
+                // Suppression des faisceaux pré-existents 
+                if (model.GetContext.ExternalPlanSetup.Beams != null)
+                {
+                    foreach (var beam in model.GetContext.ExternalPlanSetup.Beams)
+                        model.GetContext.ExternalPlanSetup.RemoveBeam(beam);
+                    model.Message = $"La ballistique n'est as nulle; les faisceaux ont tous été supprimés\nLes nouveaux faisceaux sont ajoutés";
+                }
+
                 // Check table Halcyon
                 IsThereCouch(model);
                 model.Message = $"Table insérée";
@@ -61,11 +71,29 @@ namespace Opti_Struct
                 model.Message = $"Prescription complétée";
 
                 // Point de ref
-                model.GetContext.PlanSetup.AddReferencePoint(true, null, "AutoPoint");
-                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
-                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-                model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-                model.Message = $"Point de référence généré et remplie";
+                try
+                {
+                    if (!model.GetContext.PlanSetup.ReferencePoints.Any(x => x.Id.ToUpper().Equals("AUTOPOINT")))
+                    {
+                        model.GetContext.PlanSetup.AddReferencePoint(true, null, "AutoPoint");
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                        model.Message = $"Point de référence généré et remplie";
+                    }
+                    else
+                    {
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                        model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
+                        model.Message = $"Point de référence déja existant";
+                    }
+                }
+                catch( Exception ex)
+                {
+                    model.Message = $"Le point de référence existe déjà, il est n'est peut être as actif pour le plan\n";
+                    model.Message = ex.ToString();
+                }
 
                 //Imagerie
                 ImagingBeamSetupParameters ImageParameters = new ImagingBeamSetupParameters(ImagingSetup.kVCBCT, 140, 140, 140, 140, 280, 280);
@@ -82,7 +110,7 @@ namespace Opti_Struct
                 }
                 catch
                 {
-                    _target= model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
+                    _target = model.GetContext.StructureSet.Structures.Where(id => id.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)).First();
                 }
                 _isocenter = model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(_target.Id)).CenterPoint;
                 model.Message = $"L'isocentre est placé au barycentre du volume : {_target.Id}";
@@ -116,11 +144,11 @@ namespace Opti_Struct
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
-                    
+
                     if (model.UserSelection[1].Contains("Droit"))
                     {
                         model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 180, _isocenter);
-                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);                       
+                        model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle == 0 ? 0 : 360 - _collimatorAngle, _gantryAngle + 190, _isocenter);
                     }
                     else
                     {
@@ -151,9 +179,9 @@ namespace Opti_Struct
                     var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
 
                     if (model.UserSelection[3].ToUpper().Contains("HALCYON"))
-                    {             
-                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters,metersetWeight, _collimatorAngle, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
-                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters,metersetWeight, 360 - _collimatorAngle, gantryEnd, gantryStart, secondDirection, 0, _isocenter);                        
+                    {
+                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters, metersetWeight, _collimatorAngle, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
+                        model.GetContext.ExternalPlanSetup.AddVMATBeamForFixedJaws(BeamParameters, metersetWeight, 360 - _collimatorAngle, gantryEnd, gantryStart, secondDirection, 0, _isocenter);
                     }
                     else
                     {
@@ -173,7 +201,7 @@ namespace Opti_Struct
                 }
                 #endregion
 
-                else 
+                else
                 {
                     //OK
                     //model.GetContext.ExternalPlanSetup.AddStaticBeam(BeamParameters, new VRect<double>(0, 0, 0, 0), _collimatorAngle, _gantryAngle, 1, _isocenter);

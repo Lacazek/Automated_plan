@@ -1,0 +1,31 @@
+﻿<Window x:Class="Opti_Struct.VolumeRecap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Opti_Struct"
+        mc:Ignorable="d"
+        Title="VolumeRecap" Height="1000" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="321*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="FisherMan" HorizontalAlignment="Left" Height="250" Margin="-33,0,0,0" VerticalAlignment="Top" Width="366" RenderTransformOrigin="0.542,0.507"  Source = "B:\RADIOTHERAPIE\Physique\43- Routine\scripting\Opti_Struct\FisherMan4.png" IsEnabled="False"/>
+        <Rectangle HorizontalAlignment="Left" Stroke="Black" Width="1010" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" Margin="0,880,0,-5" Grid.ColumnSpan="2">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="984" Margin="150,0,0,0" Stroke="Black" VerticalAlignment="Center" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" HorizontalAlignment="Left" Width="48" Grid.Column="1"/>
+        <Rectangle HorizontalAlignment="Left" Stroke="Black" Width="38" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF"/>
+        <TextBlock x:Name="recap_Title" HorizontalAlignment="Left" Margin="331,38,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="39" Width="599" TextAlignment="Center" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold"/>
+        <TextBlock x:Name="recap_Body" HorizontalAlignment="Left" Margin="331,99,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="752" Width="599" TextAlignment="Center" Grid.ColumnSpan="2"/>
+        <Button x:Name="OK_Button" Content="OK" HorizontalAlignment="Left" Height="42" Margin="81,809,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click" Foreground="Black" Background="#FFBEFF93" FontSize="22"/>
+    </Grid>
+</Window>

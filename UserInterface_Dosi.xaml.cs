@@ -66,7 +66,7 @@ namespace Structure_optimisation
 
             foreach (var item in _model.GetContext.Equipment.GetExternalBeamTreatmentUnits())
             {
-                Box_Loc_machine.Items.Add(item);
+                Box_Loc_machine.Items.Add(item.Id.Contains(":") ? item.Id.Split(':')[0] : item.Id);
             }
         }
 

@@ -5121,3 +5121,3140 @@ Modification du nom de plan réalisée avec succés
 Fichier Log fermé
 Fin du programme : 12/12/2024 14:08:35
 ***************************Script terminé***************************
+
+**********************************
+Debut de programme : 18/12/2024 16:03:22
+Ordinateur utilisé : B24X0006
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 781324288
+User : 519636
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_D_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\519636\H_SEIN_SEUL_D_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein Dt
+
+Suppression des anciennes structures auto ...
+StructureSet renommé en Dosi_auto
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Cont Externe +7mm
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Cont Externe +7mm créée
+
+**********************************************************************************************************
+
+Travail sur la structure Cont Externe -7mm
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Cont Externe -7mm créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein Dt 
+Marge symétriques de  0 mm sur la structure : CTV sein Dt
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_Dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_Dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_Dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein d  et  test2
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein g 
+Mauvaise nomenclature sur la structure sein g 
+Liste des structures
+Sein_G
+La structure sein g a été corrigée en Sein_G
+
+Marge symétriques de  0 mm sur la structure : Sein_G
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Cont Externe +7mm : contour externe ! 7
+Cont Externe -7mm : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein D : z_ring sein d & test2
+test1 : /
+test2 : /
+Sein contro : sein g ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Cont Externe +7mm : contour externe ! 7
+Cont Externe -7mm : contour externe ! -7
+CTV_dosi : CTV sein Dt ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein D : z_ring sein d & test2
+test1 : /
+test2 : /
+Sein contro : sein g ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Droit
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+Point de référence généré et remplie
+Paramètres d'imagerie générés'
+Paramètres de DRR générés
+L'isocentre est placé au barycentre du volume : CTV sein Dt
+Optimisation de l'angle du bras et du collimateur réalisée
+Balistique IMRT associée correctement
+KVCBCT mis à jour avec succés
+L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation
+
+
+*************************Partie dosimétrie*************************
+
+Les donnés d'optimisation de bases ont été chargées
+
+L'utilisateur à choisi de réaliser automatiquement l'optimisation et le calcul de la dose
+
+Dosimétrie IMRT en cours de réalisation ...
+
+Erreur dans la réalisation de la dosimétrie
+Le faisceau 'TGI 11' est déjà associé à un MLC statique. Optimisation par ESAPI non prise en charge.
+Le faisceau 'TGI 12' est déjà associé à un MLC statique. Optimisation par ESAPI non prise en charge.
+Le faisceau 'TGI 13' est déjà associé à un MLC statique. Optimisation par ESAPI non prise en charge.
+Le faisceau 'TGE 11' est déjà associé à un MLC statique. Optimisation par ESAPI non prise en charge.
+Le faisceau 'TGE 12' est déjà associé à un MLC statique. Optimisation par ESAPI non prise en charge.
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 18/12/2024 16:08:44
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 18/12/2024 16:10:50
+Ordinateur utilisé : B24X0006
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 959373312
+User : 519636
+
+Fichier ouvert
+
+L'utilisateur n'a pas choisi de réaliser l'autocontour
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Droit
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+L'utilisateur n'a pas choisi de réaliser automatiquement ni la dosimétrie ni le remplissage automatique des pré-contraintes dosimétriques
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 18/12/2024 16:11:23
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 18/12/2024 16:11:59
+Ordinateur utilisé : B24X0006
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 976556032
+User : 519636
+
+Fichier ouvert
+
+L'utilisateur n'a pas choisi de réaliser l'autocontour
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Droit
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+Point de référence généré et remplie
+Paramètres d'imagerie générés'
+Paramètres de DRR générés
+L'isocentre est placé au barycentre du volume : CTV_dosi_auto
+Optimisation de l'angle du bras et du collimateur réalisée
+Balistique IMRT associée correctement
+KVCBCT mis à jour avec succés
+L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation
+
+
+*************************Partie dosimétrie*************************
+
+Les donnés d'optimisation de bases ont été chargées
+
+L'utilisateur à choisi de réaliser automatiquement l'optimisation et le calcul de la dose
+
+Dosimétrie IMRT en cours de réalisation ...
+
+Dosimétrie réalisée avec succés
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 18/12/2024 16:17:16
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 20/12/2024 16:27:35
+Ordinateur utilisé : B24X0004
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 849080320
+User : 129391
+
+Fichier ouvert
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 20/12/2024 16:27:53
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 20/12/2024 16:28:17
+Ordinateur utilisé : B24X0004
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 860950528
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV Sein G
+
+Suppression des anciennes structures auto ...
+StructureSet renommé en Dosi_auto
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV Sein G 
+Marge symétriques de  0 mm sur la structure : CTV Sein G
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein d 
+Mauvaise nomenclature sur la structure sein d 
+Liste des structures
+Sein_D
+La structure sein d a été corrigée en Sein_D
+
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV Sein G ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+Point de référence généré et remplie
+Paramètres d'imagerie générés'
+Paramètres de DRR générés
+L'isocentre est placé au barycentre du volume : CTV Sein G
+Optimisation de l'angle du bras et du collimateur réalisée
+Balistique IMRT associée correctement
+KVCBCT mis à jour avec succés
+L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation
+
+
+*************************Partie dosimétrie*************************
+
+Les donnés d'optimisation de bases ont été chargées
+
+L'utilisateur à choisi de réaliser automatiquement l'optimisation et le calcul de la dose
+
+Dosimétrie IMRT en cours de réalisation ...
+
+Dosimétrie réalisée avec succés
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'evaluation dosimétrique
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 20/12/2024 16:44:20
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 20/12/2024 16:50:56
+Ordinateur utilisé : B24X0004
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 733118464
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV Sein G
+
+Suppression des anciennes structures auto ...
+StructureSet renommé en Dosi_auto
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV Sein G 
+Marge symétriques de  0 mm sur la structure : CTV Sein G
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV Sein G ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Gauche
+Technique : IMRT
+Machine : HALCYON1:HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+Point de référence généré et remplie
+Paramètres d'imagerie générés'
+Paramètres de DRR générés
+L'isocentre est placé au barycentre du volume : CTV Sein G
+Optimisation de l'angle du bras et du collimateur réalisée
+Balistique IMRT associée correctement
+KVCBCT mis à jour avec succés
+L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation
+
+
+*************************Partie dosimétrie*************************
+
+Les donnés d'optimisation de bases ont été chargées
+
+L'utilisateur à choisi de réaliser automatiquement l'optimisation et le calcul de la dose
+
+Dosimétrie IMRT en cours de réalisation ...
+
+Dosimétrie réalisée avec succés
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 20/12/2024 16:54:44
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 4:56:10 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 502505472
+User : 129391
+
+Fichier ouvert
+
+L'utilisateur n'a pas choisi de réaliser l'autocontour
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 4:56:27 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 4:56:34 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 438640640
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_D_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_D_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Cont Externe +7mm
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Cont Externe +7mm créée
+
+**********************************************************************************************************
+
+Travail sur la structure Cont Externe -7mm
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Cont Externe -7mm créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein d  et  test2
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein g 
+Marge symétriques de  0 mm sur la structure : Sein G
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Cont Externe +7mm : contour externe ! 7
+Cont Externe -7mm : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein D : z_ring sein d & test2
+test1 : /
+test2 : /
+Sein contro : sein g ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Cont Externe +7mm : contour externe ! 7
+Cont Externe -7mm : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein D : z_ring sein d & test2
+test1 : /
+test2 : /
+Sein contro : sein g ! 0
+
+
+
+**************************************************
+L'utilisateur à choisi de réaliser l'autoplanning
+
+Prescription : Normo_Fractionne_Sein
+Côté : Droit
+Technique : IMRT
+Machine : HALCYON1
+
+L'utilisateur à choisi de réaliser automatiquement les faisceaux
+
+
+*************************Partie faisceaux*************************
+
+Table insérée
+Prescription complétée
+Point de référence généré et remplie
+Paramètres d'imagerie générés'
+Paramètres de DRR générés
+L'isocentre est placé au barycentre du volume : CTV sein
+Optimisation de l'angle du bras et du collimateur réalisée
+Balistique IMRT associée correctement
+KVCBCT mis à jour avec succés
+L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation
+
+
+*************************Partie dosimétrie*************************
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 4:57:17 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 5:46:09 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 429342720
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 5:46:27 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 5:49:04 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 430575616
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 5:49:35 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 5:53:48 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 429490176
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 5:55:42 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 5:56:03 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 429703168
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 5:57:55 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 6:02:38 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 429019136
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 6:03:02 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 6:05:11 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 429703168
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT - Copie
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT - Copie.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+z_ring sein D
+
+Il existe 2 structures respectant la REGEX
+Test de la structure CTV Sein G ; Indice de similarité : 0.570269897557745
+Test de la structure z_ring sein D ; Indice de similarité : 0.924213672859317
+La structure z_ring sein g a été corrigée en z_ring sein D
+
+Operation sur les structures : z_ring sein D et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : gjftjdrjdrt 
+Mauvaise nomenclature sur la structure gjftjdrjdrt 
+Liste des structures
+La structure gjftjdrjdrt a été corrigée en gjftjdrjdrt 
+
+La référence d'objet n'est pas définie à une instance d'un objet.
+La structure de l'utilisateur est ajoutée vide
+Indice erreur : 2
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+Sein contro : gjftjdrjdrt ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+Sein contro : gjftjdrjdrt ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 6:05:34 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 6:05:54 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 646463488
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT - Copie
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT - Copie.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : gjftjdrjdrt 
+Mauvaise nomenclature sur la structure gjftjdrjdrt 
+Liste des structures
+La structure gjftjdrjdrt a été corrigée en gjftjdrjdrt 
+
+La référence d'objet n'est pas définie à une instance d'un objet.
+La structure de l'utilisateur est ajoutée vide
+Indice erreur : 2
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+Sein contro : gjftjdrjdrt ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+Sein contro : gjftjdrjdrt ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 6:06:29 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 6:06:39 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 656310272
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT - Copie
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT - Copie.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+Travail sur la structure prout
+********** Operation simple **********
+Structure attendue : gjftjdrjdrt 
+Mauvaise nomenclature sur la structure gjftjdrjdrt 
+Liste des structures
+La structure gjftjdrjdrt a été corrigée en gjftjdrjdrt 
+
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+prout: gjftjdrjdrt ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+prout: gjftjdrjdrt ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 6:07:32 PM
+***************************Script terminé***************************
+
+**********************************
+Debut de programme : 12/20/2024 6:14:09 PM
+Ordinateur utilisé : B23X003
+OS : Microsoft Windows NT 6.2.9200.0
+Domaine windows : CHU30.COM
+Dossier de travail : C:\Windows\system32
+Taille du jeu de travail : 681385984
+User : 129391
+
+Fichier ouvert
+
+Fichier choisi : H_SEIN_SEUL_G_IMRT
+Chemin du fichier : B:\RADIOTHERAPIE\Killian\Dosi\Script\AutoPlanning\File\Volume\129391\H_SEIN_SEUL_G_IMRT.txt
+
+La cible n°1 choisie est : 
+CTV sein
+
+Suppression des anciennes structures auto ...
+Suppression réalisée avec succés
+
+
+Modification du contour externe ; seuil défini à : -700 UH
+
+Modification de la couleur du contour externe en : vert (code RGB (0,255,0))
+
+Travail sur la structure verbose
+Niveau de verbose 0
+
+Travail sur la structure table
+
+**********************************************************************************************************
+
+Travail sur la structure Externe +7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  7 mm sur la structure : Contour externe
+Structure Externe +7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure Externe -7
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -7 mm sur la structure : Contour externe
+Structure Externe -7 créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation simple **********
+Structure attendue : CTV sein 
+Marge symétriques de  0 mm sur la structure : CTV sein
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation simple **********
+Structure attendue : CTV_dosi 
+Marge symétriques de  5 mm sur la structure : CTV_dosi
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Structure attendue : PTV_dosi 
+Marge symétriques de  10 mm sur la structure : PTV_dosi
+Structure test1 créée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Structure attendue : contour externe 
+Marge symétriques de  -5 mm sur la structure : Contour externe
+Structure test2 créée
+
+**********************************************************************************************************
+
+Travail sur la structure PTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : PTV_dosi  et  test2
+Operation sur les structures : PTV_dosi et test2
+Structure PTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure CTV_dosi
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : CTV_dosi  et  test2
+Operation sur les structures : CTV_dosi et test2
+Structure CTV_dosi créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_CE -(PTV + 1cm)
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : contour externe  et  test1
+Operation sur les structures : Contour externe et test1
+Structure z_CE -(PTV + 1cm) créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein D
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple #
+Structures attendues : test1  et  PTV_dosi
+Operation sur les structures : test1 et PTV_dosi
+Structure z_ring sein D créée
+
+**********************************************************************************************************
+
+Travail sur la structure z_ring sein G
+********** Operation multiple **********
+********** Operation simple **********
+Operation simple &
+Structures attendues : z_ring sein g  et  test2
+Mauvaise nomenclature sur la structure z_ring sein g 
+Liste des structures
+CTV Sein G
+La structure z_ring sein g a été corrigée en CTV Sein G
+
+Operation sur les structures : CTV Sein G et test2
+Structure z_ring sein G créée
+
+**********************************************************************************************************
+
+Travail sur la structure test1
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test1 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure test2
+********** Operation simple **********
+Operation simple /
+Suppression de structure
+Structure test2 supprimée
+
+**********************************************************************************************************
+
+Travail sur la structure Sein contro
+********** Operation simple **********
+Structure attendue : sein_d 
+Marge symétriques de  0 mm sur la structure : Sein_D
+Structure Sein contro créée
+
+**********************************************************************************************************
+
+
+Succés dans la régénération du fichier de départ
+
+Détail du fichier de départ :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+Détail du fichier de fin :
+
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : CTV sein ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein D : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+
+L'utilisateur n'a pas choisi de réaliser l'autoplanning
+
+L'utilisateur n'a pas choisi de réaliser l'évaluation de plan
+
+L'utilisateur n'a pas choisi de réaliser le transfert automatique des données
+
+Modification du nom de plan réalisée avec succés
+
+Fichier Log fermé
+Fin du programme : 12/20/2024 6:14:29 PM
+***************************Script terminé***************************

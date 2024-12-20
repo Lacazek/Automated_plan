@@ -742,14 +742,13 @@ namespace Structure_optimisation
                 Message = "\n**********************************************************************************************************\n";
             }
 
-            MessageRecap(information, erreur, System.IO.Path.GetFileNameWithoutExtension(_userFileChoice));
-
             foreach (var autostruct in _ss.Structures)
             {
                 if (autostruct.Comment.Contains("automatiquement"))
                     autostruct.Id = autostruct.Id + "_auto";
             }
 
+            MessageRecap(information, erreur, System.IO.Path.GetFileNameWithoutExtension(_userFileChoice));
             #endregion
 
             srf.Close();
@@ -768,9 +767,15 @@ namespace Structure_optimisation
         }
 
         #region Message
-        internal void MessageRecap(string information, string erreur, string file)
+       /* internal void MessageRecap(string information, string erreur, string file)
         {
             MessageBox.Show($"Protocole utilisé : {file}\n\n" + information + "\n\n" + erreur, "Récapitulatif", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+        }*/
+
+        internal void MessageRecap(string information, string erreur, string file)
+        {
+            VolumeRecap recap = new VolumeRecap(information, erreur, file);
+            recap.ShowDialog();
         }
         internal string Message
         {
