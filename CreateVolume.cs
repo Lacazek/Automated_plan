@@ -767,11 +767,6 @@ namespace Structure_optimisation
         }
 
         #region Message
-       /* internal void MessageRecap(string information, string erreur, string file)
-        {
-            MessageBox.Show($"Protocole utilisé : {file}\n\n" + information + "\n\n" + erreur, "Récapitulatif", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-        }*/
-
         internal void MessageRecap(string information, string erreur, string file)
         {
             VolumeRecap recap = new VolumeRecap(information, erreur, file);

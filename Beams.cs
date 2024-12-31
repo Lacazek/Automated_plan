@@ -34,6 +34,7 @@ using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 using System.Text.RegularExpressions;
 using System.Net.Configuration;
+using System.Text;
 
 namespace Opti_Struct
 {
@@ -59,7 +60,7 @@ namespace Opti_Struct
                 {
                     foreach (var beam in model.GetContext.ExternalPlanSetup.Beams)
                         model.GetContext.ExternalPlanSetup.RemoveBeam(beam);
-                    model.Message = $"La ballistique n'est as nulle; les faisceaux ont tous été supprimés\nLes nouveaux faisceaux sont ajoutés";
+                    model.Message = $"La ballistique n'est pas nulle; les faisceaux ont tous été supprimés\nLes nouveaux faisceaux sont ajoutés";
                 }
 
                 // Check table Halcyon
@@ -86,18 +87,18 @@ namespace Opti_Struct
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-                        model.Message = $"Point de référence déja existant";
+                        model.Message = $"Point de référence déja existant -> Mise à jour des valeurs";
                     }
                 }
-                catch( Exception ex)
+                catch (Exception ex)
                 {
-                    model.Message = $"Le point de référence existe déjà, il est n'est peut être as actif pour le plan\n";
+                    model.Message = $"Le point de référence existe déjà, il n'est peut être pas actif pour le plan\n";
                     model.Message = ex.ToString();
                 }
 
                 //Imagerie
                 ImagingBeamSetupParameters ImageParameters = new ImagingBeamSetupParameters(ImagingSetup.kVCBCT, 140, 140, 140, 140, 280, 280);
-                model.Message = $"Paramètres d'imagerie générés'";
+                model.Message = $"Paramètres d'imagerie générés";
 
                 // Paramètre DRR (taille [mm],pondération, fenetre scan de , fenêtre scan à, découpe de, découpe à)
                 DRRCalculationParameters DRR = new DRRCalculationParameters(500, 1, -450, 150, 2, 6);
@@ -138,9 +139,6 @@ namespace Opti_Struct
                 #region IMRT
                 if (model.UserSelection[2].Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
                 {
-                    // évaluer ici 
-                    _gantryAngle = _gantryAngle + 10;
-
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle + 10, _isocenter);
                     model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, _gantryAngle - 10, _isocenter);
@@ -174,7 +172,7 @@ namespace Opti_Struct
                 {
 
                     int gantryStart = model.UserSelection[1].Contains("Gauche") ? 179 : model.UserSelection[1].Contains("Droit") ? 181 : 181;
-                    int gantryEnd = model.UserSelection[1].Contains("Gauche") ? 0 : model.UserSelection[1].Contains("Droit") ? 0 : 179;
+                    int gantryEnd = model.UserSelection[0].ToUpper().Contains("SEIN") ? model.UserSelection[1].Contains("Droit") ? 50 : model.UserSelection[1].Contains("Gauche") ? 310 : 0 : 0;
                     var firstDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.CounterClockwise : GantryDirection.Clockwise;
                     var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
 
@@ -225,7 +223,7 @@ namespace Opti_Struct
 
                 model.GetContext.ExternalPlanSetup.AddImagingSetup(BeamParameters, ImageParameters, model.GetContext.StructureSet.Structures.First(st => st.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)));
                 model.GetContext.PlanSetup.Beams.First(x => x.IsSetupField).CreateOrReplaceDRR(DRR);
-                model.Message = $"KVCBCT mis à jour avec succés";
+                model.Message = $"KVCBCT mis à jour avec succés\n";
 
             }
             catch (Exception ex)
@@ -240,14 +238,13 @@ namespace Opti_Struct
             #region Gantry puis collimateur
             if (model.UserSelection[2].ToUpper().Contains("IMRT") && model.UserSelection[0].ToUpper().Contains("SEIN"))
             {
-
                 // Angle du gantry, à faire en priorité
                 int[] gantryAngle = new int[61];
 
                 for (int i = 0; i < 61; i++)
                 {
                     if (model.UserSelection[1].Contains("Droit"))
-                        gantryAngle[i] = 10 + i;
+                        gantryAngle[i] = 0 + i;
                     else
                         gantryAngle[i] = 280 + i;
                 }
@@ -263,14 +260,14 @@ namespace Opti_Struct
                 }
 
                 int index = 0;
-                List<double> Areas = new List<double>();
+                List<Dictionary<double, double>> Areas = new List<Dictionary<double, double>>();
                 List<Dictionary<int, double>> mlc = new List<Dictionary<int, double>>();
                 double Area = 0.0;
 
                 foreach (var angle in gantryAngle)
                 {
                     Area = 0.0;
-                    var beam_colli = model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, angle, _isocenter);
+                    var beam_gantry = model.GetContext.ExternalPlanSetup.AddFixedSequenceBeam(BeamParameters, _collimatorAngle, angle, _isocenter);
                     model.GetContext.PlanSetup.Beams.First().FitMLCToStructure(_target);
                     mlc.Add(model.GetContext.ExternalPlanSetup.Beams.First().CalculateAverageLeafPairOpenings());
 
@@ -278,16 +275,15 @@ namespace Opti_Struct
                     {
                         Area += mlc[index][key];
                     }
-                    Areas.Add(Area);
 
-                    if (index != 0 && Areas[index] < Areas[index - 1])
-                    {
-                        _gantryAngle = angle;
-                    }
+                    var values = new Dictionary<double, double> { { angle, Area } };
+                    Areas.Add(values);
                     index++;
-                    model.GetContext.ExternalPlanSetup.RemoveBeam(beam_colli);
+                    model.GetContext.ExternalPlanSetup.RemoveBeam(beam_gantry);
                 }
+                _gantryAngle = Areas.SelectMany(dict => dict).OrderBy(kvp => kvp.Value).First().Key;
 
+                Areas.Clear();
                 index = 0;
 
                 foreach (var angle in colliAngle)
@@ -301,15 +297,13 @@ namespace Opti_Struct
                     {
                         Area += mlc[index][key];
                     }
-                    Areas.Add(Area);
 
-                    if (index != 0 && Areas[index] < Areas[index - 1])
-                    {
-                        _collimatorAngle = angle;
-                    }
+                    var values = new Dictionary<double, double> { { angle, Area } };
+                    Areas.Add(values);
                     index++;
                     model.GetContext.ExternalPlanSetup.RemoveBeam(beam_colli);
                 }
+                _collimatorAngle = Areas.SelectMany(dict => dict).OrderBy(kvp => kvp.Value).First().Key;
             }
             else if (model.UserSelection[0].ToUpper().Contains("POUMON"))
             {
@@ -335,6 +329,19 @@ namespace Opti_Struct
                     new DoseValue(double.Parse(Regex.Match(firstLine.Split(':')[1], @"\d+\.?\d*").Value), DoseValue.DoseUnit.Gy),
                     double.Parse(Regex.Match(thirdLine.Split(':')[1], @"\d+").Value) / 100);
             }
+
+            // fonctionne pas encore
+            // ajouter la structure cible
+            if (model.GetContext.ExternalPlanSetup.SetTargetStructureIfNoDose(_target, new StringBuilder("erreur")))
+            {
+                model.Message = $"Assignation du volume cible réussi";
+                MessageBox.Show("ok");
+            }
+            else
+            {
+                model.Message = $"Assignation du volume cible en échec";
+                MessageBox.Show("non");
+            }
         }
         internal void IsThereCouch(UserInterfaceModel model)
         {
@@ -346,6 +353,10 @@ namespace Opti_Struct
             // Pour l'Halcyon cela est dépendant s'il y a un faisceau ou non (l'ajout se fait par lecture de la machine dans les paramètres faisceau)
             if (!model.GetContext.StructureSet.Structures.Any(x => x.DicomType.ToUpper().Equals("SUPPORT")))
                 model.GetContext.StructureSet.AddCouchStructures("RDS_Couch_Top", PatientOrientation.NoOrientation, RailPosition.In, RailPosition.In, null, null, null, out couchStructureList, out ImageResized, out error);
+        }
+
+        internal void AddClinicalGoalsFromTemplate(UserInterfaceModel model)
+        {
         }
     }
 }

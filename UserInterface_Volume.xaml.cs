@@ -100,11 +100,6 @@ namespace Structure_optimisation
             }
         }
 
-        internal void IsOpened(bool test)
-        {
-            _model.IsOpened(test);
-        }
-
         #region ComboBox for file choice
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

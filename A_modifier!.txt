@@ -1,0 +1,5 @@
+ajout de la structure dans la target ID de l'onglet dose
+
+ajouter une pénalité à l'angle du gantry si passe par sein controlatéral
+
+ajouter objectifs clinique

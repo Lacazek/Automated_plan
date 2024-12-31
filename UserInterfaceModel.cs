@@ -164,10 +164,10 @@ namespace Structure_optimisation
                     _dosimetry.LaunchDosimetry(this);
                 }
                 else
-                    Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement ni la dosimétrie ni le remplissage automatique des pré-contraintes dosimétriques";
+                    Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement ni la dosimétrie ni le remplissage automatique des pré-contraintes dosimétriques\n";
             }
             else
-                Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement la mise en place des faisceaux";
+                Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement la mise en place des faisceaux\n";
         }
 
         internal void FillList()
