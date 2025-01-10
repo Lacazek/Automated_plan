@@ -33,7 +33,6 @@ using System.Reflection;
 using System.Windows;
 using Opti_Struct;
 using DoseCheck;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Structure_optimisation
 {
@@ -43,10 +42,14 @@ namespace Structure_optimisation
         private List<string> _userSelection;
         private List<string> _localisation;
         private List<string> _list;
+        private List<string> _prescription;
 
         private string _userChoice;
         private string _rename;
+        private string _log;
         private readonly string _fisherMan;
+
+        private bool _alredayClosed;
 
         private GetFile _file;
         private StreamWriter _logFile;
@@ -61,6 +64,8 @@ namespace Structure_optimisation
         {
             _userChoice = string.Empty;
             _rename = string.Empty;
+            _alredayClosed = false;
+
             _context = context;
             _list = new List<string>();
             _localisation = new List<string>();
@@ -90,49 +95,95 @@ namespace Structure_optimisation
             Message = $"User : {Environment.UserName}\n";
             Message = $"Fichier ouvert\n";
 
-            if (MessageBox.Show("Voulez-vous lancer l'autocontour ?\n\nSi vous sélectionnez NO\nIl est possible que la suite du programme ne fonctionne pas correctement\n\n" +
-                "Si vous sélectionnez YES\nLes contours d'optimisations seront réalisés automatiquement", "Information", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+
+            bool Run = true;
+            string Log_Auto_Contour = string.Empty, Log_Auto_Planning = string.Empty, Log_Auto_Evaluation = string.Empty, Log_Auto_Transfert = string.Empty;
+
+            while (Run)
             {
-                UserInterface_Volume interfaceVolume = new UserInterface_Volume(this);
-                interfaceVolume.ShowDialog();
+                _log = string.Empty;
+                Front_Page FP = new Front_Page(Log_Auto_Contour, Log_Auto_Planning, Log_Auto_Evaluation, Log_Auto_Transfert);
+                FP.Signal += (s, result) =>
+                {
+                    switch (result)
+                    {
+                        case "0":
+                            try
+                            {
+                                Message = $"\n\n**************************************************";
+                                Message = $"L'utilisateur à choisi de réaliser l'autocontour\n";
+                                UserInterface_Volume interfaceVolume = new UserInterface_Volume(this);
+                                interfaceVolume.ShowDialog();
+                                Log_Auto_Contour = _log;
+                            }
+                            catch
+                            {
+                                IsOpened(true);
+                                _alredayClosed = true;
+                            }
+                            break;
+
+                        case "1":
+                            try
+                            {
+                                Message = $"\n\n**************************************************";
+                                Message = $"L'utilisateur à choisi de réaliser l'autoplanning\n";
+                                UserInterface_Dosi Interface_dosi = new UserInterface_Dosi(this);
+                                Interface_dosi.ShowDialog();
+                                Log_Auto_Planning = _log;
+                            }
+                            catch
+                            {
+                                IsOpened(true);
+                                _alredayClosed = true;
+                            }
+                            break;
+
+                        case "2":
+
+                            try
+                            {
+                                Message = $"\n\n**************************************************";
+                                Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique\n";
+                                _getMyData = new GetMyData(this);
+                                UserInterface_Check Interface_check = new UserInterface_Check(this);
+                                Interface_check.ShowDialog();
+                                Log_Auto_Evaluation = _log;
+                            }
+                            catch
+                            {
+                                IsOpened(true);
+                                _alredayClosed = true;
+                            }
+                            break;
+
+                        case "3":
+
+                            try
+                            {
+                                Message = $"\n\n**************************************************";
+                                Message = $"L'utilisateur à choisi de réaliser le transfert automatique\n";
+                                Log_Auto_Transfert = $"Les transferts ne sont actuellement pas opérationnels";
+                                //Log_Auto_Transfert = _log;
+                            }
+                            catch
+                            {
+                                IsOpened(true);
+                                _alredayClosed = true;
+                            }
+                            break;
+
+                        case "Close":
+                            Run = false;
+                            Message = $"L'utilisateur à mis fin au programme";
+                            break;
+                        default:
+                            break;
+                    }
+
+                };
+                FP.ShowDialog();
             }
-            else
-                Message = $"L'utilisateur n'a pas choisi de réaliser l'autocontour\n";
-
-
-            if (MessageBox.Show("Voulez-vous lancer l'autoplanning ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Message = $"\n\n**************************************************";
-                Message = $"L'utilisateur à choisi de réaliser l'autoplanning\n";
-                UserInterface_Dosi Interface_dosi = new UserInterface_Dosi(this);
-                Interface_dosi.ShowDialog();
-            }
-            else
-                Message = $"L'utilisateur n'a pas choisi de réaliser l'autoplanning\n";
-
-
-            //Améliorer fichier log
-
-            if (MessageBox.Show("Voulez-vous lancer l'évaluation de plan ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes
-                && GetContext.ExternalPlanSetup.IsDoseValid)
-            {
-                Message = $"\n\n**************************************************";
-                Message = $"L'utilisateur à choisi de réaliser l'evaluation dosimétrique\n";
-                _getMyData = new GetMyData(this);
-                UserInterface_Check Interface_check = new UserInterface_Check(this);
-                Interface_check.ShowDialog();
-            }
-            else
-                Message = $"L'utilisateur n'a pas choisi de réaliser l'évaluation de plan\n";
-
-            //Améliorer fichier log
-
-            if (MessageBox.Show("Voulez-vous lancer le transfert des données ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-
-            }
-            else
-                Message = $"L'utilisateur n'a pas choisi de réaliser le transfert automatique des données\n";
 
             try
             {
@@ -142,12 +193,12 @@ namespace Structure_optimisation
                 Message = $"Modification du nom de plan réalisée avec succés\n";
             }
             catch (Exception ex)
-            {              
+            {
                 Message = $"Impossibilité de modifier le nom du plan\n";
                 Message += ex.Message;
             }
         }
-        
+
         internal void LaunchPlanning()
         {
             // 1 Création des contours --> getFile-> CreateVolume
@@ -195,6 +246,11 @@ namespace Structure_optimisation
         internal string GetPrescription
         {
             get { return _file.GetPrescription; }
+        }
+        internal List<string> GetPrescription2
+        {
+            get { return _prescription; }
+            set { _prescription = value; }
         }
         internal GetFile File
         {
@@ -252,6 +308,10 @@ namespace Structure_optimisation
         {
             set { _list.Add(value); }
         }
+        internal string Set_Log
+        {
+            set { _log += value; }
+        }
         #endregion
 
         #region update message
@@ -267,7 +327,7 @@ namespace Structure_optimisation
         }
         internal void IsOpened(bool test)
         {
-            if (test == true)
+            if (test == true && _alredayClosed != true)
             {
                 _logFile.WriteLine($"Fichier Log fermé");
                 _logFile.WriteLine($"Fin du programme : {DateTime.Now}");

@@ -1,0 +1,27 @@
+verbose : 0
+table : fine
+z_PTV HR : cible1 ! 0
+z_PTV BR : cible2 ! 0
+z_GTV : cible3 ! 0
+z_PTV_tot : z_PTV BR | z_PTV HR
+z_PTV_HR : z_ptv HR # z_gtv
+z_PTV_BR_proche : z_ptv hr ! 15
+z_PTV_BR_proche: z_ptv_br_proche # z_ptv hr & z_PTV br
+z_PTV_BR_loin : z_ptv br # z_ptv_br_proche
+PRV Moelle +2 : moelle ! 2
+PRV Moelle +3 : moelle ! 3
+PRV Moelle +5 : moelle ! 5
+PRV Moelle +10 : moelle ! 10
+PRV TC +2 : tronc cerebral ! 2
+PRV TC +3 : tronc cerebral ! 3
+test : /
+test : z_ptv BR ! 3
+z_parotide_D_opt : parotide_d # test
+z_parotide_G_opt : parotide_g # test
+test : /
+z_Trac/Oeso opt : oesophage | trachee
+z_opt post :
+z_opt inter :
+z_artefacts :
+z_ring 1 :
+z_ring 2 :

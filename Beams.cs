@@ -318,7 +318,7 @@ namespace Opti_Struct
 
         internal void AddPrescription(UserInterfaceModel model)
         {
-            using (StreamReader SelectedPrescription = new StreamReader(Path.Combine(model.GetPrescription, model.UserSelection[0] + ".txt")))
+            /*using (StreamReader SelectedPrescription = new StreamReader(Path.Combine(model.GetPrescription, model.UserSelection[0] + ".txt")))
             {
                 string firstLine = SelectedPrescription.ReadLine();
                 string secondLine = SelectedPrescription.ReadLine();
@@ -328,11 +328,22 @@ namespace Opti_Struct
                     int.Parse(Regex.Match(secondLine.Split(':')[1], @"\d+").Value),
                     new DoseValue(double.Parse(Regex.Match(firstLine.Split(':')[1], @"\d+\.?\d*").Value), DoseValue.DoseUnit.Gy),
                     double.Parse(Regex.Match(thirdLine.Split(':')[1], @"\d+").Value) / 100);
-            }
+            }*/
+
+            model.GetContext.PlanSetup.SetPrescription(
+                   (int)(Math.Round(double.Parse(model.GetPrescription2[1])/ double.Parse(model.GetPrescription2[2]))),
+                   new DoseValue(double.Parse(model.GetPrescription2[2]),DoseValue.DoseUnit.Gy),
+                   1);
+
+            //***************************************************
+            // fixer le problème de structure cible
+            //model.GetContext.ExternalPlanSetup.SetTargetStructureIfNoDose(_target, new StringBuilder("erreur"));
+            //***************************************************
+
 
             // fonctionne pas encore
             // ajouter la structure cible
-            if (model.GetContext.ExternalPlanSetup.SetTargetStructureIfNoDose(_target, new StringBuilder("erreur")))
+            /*if (model.GetContext.ExternalPlanSetup.SetTargetStructureIfNoDose(_target, new StringBuilder("erreur")))
             {
                 model.Message = $"Assignation du volume cible réussi";
                 MessageBox.Show("ok");
@@ -341,7 +352,7 @@ namespace Opti_Struct
             {
                 model.Message = $"Assignation du volume cible en échec";
                 MessageBox.Show("non");
-            }
+            }*/
         }
         internal void IsThereCouch(UserInterfaceModel model)
         {

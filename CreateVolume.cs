@@ -58,6 +58,7 @@ namespace Structure_optimisation
         public event EventHandler<string> MessageChanged;
         private int verbose;
         private Struct_dictionnary _dictionnary;
+        private UserInterfaceModel _model;
 
         #region Constructeurs
         #region Constructeur 1
@@ -98,6 +99,7 @@ namespace Structure_optimisation
             _ss = model.GetContext.StructureSet;
             _course = model.GetContext.Course;
             _image = model.GetContext.Image;
+            _model = model;
             verbose = 1;
             filterTags = new char[] {
                 '|', // totalite
@@ -749,6 +751,7 @@ namespace Structure_optimisation
             }
 
             MessageRecap(information, erreur, System.IO.Path.GetFileNameWithoutExtension(_userFileChoice));
+            _model.Set_Log = erreur;
             #endregion
 
             srf.Close();

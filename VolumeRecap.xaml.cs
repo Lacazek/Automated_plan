@@ -40,24 +40,21 @@ namespace Opti_Struct
             InitializeComponent();
             recap_Title.Text = $"Protocole utilisé: {file}";
 
-            // Effacer les anciennes inlines (si existantes)
             recap_Body.Inlines.Clear();
 
-            // Ajouter le texte des informations (en vert)
             var infoRun = new Run(information)
             {
                 Foreground = Brushes.Green
             };
 
-            // Ajouter le texte des erreurs (en rouge)
             var errorRun = new Run("\n\n" + erreur)
             {
                 Foreground = Brushes.Red
             };
 
             // Ajouter les deux au TextBlock
-            recap_Body.Inlines.Add(infoRun);
             recap_Body.Inlines.Add(errorRun);
+            recap_Body.Inlines.Add(infoRun);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

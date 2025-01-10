@@ -1,0 +1,26 @@
+verbose : 0
+table : fine
+z_PTV : cible1 ! 0
+PRV Moelle +2 : moelle ! 2
+PRV Moelle +3 : moelle ! 3
+PRV Moelle +5 : moelle ! 5
+PRV NOG +1 : nog ! 1
+PRV NOG +2 : nog ! 2
+PRV NOG +3 : nog ! 3
+PRV NOD +1 : nod ! 1
+PRV NOD +2 : nod ! 2
+PRV NOD +3 : nod ! 3
+PRC TC +2 : tronc_cerebral ! 2
+PRV TC +3 : tronc_cerebral ! 3
+PRV TC +5 : tronc_cerebral ! 5
+PRV Chiasma +1 : chiasma ! 1
+PRV Chiasma +2 : chiasma ! 2
+PRV Chiasma +3 : chiasma ! 3
+Encephale-PTV : encephale # z_ptv
+z_opt ant : 
+z_artefacts :
+test : z_ptv ! 3
+z_encephale : encephale # test
+z_ring : z_ptv ! 20
+z_ring : z_ring # test
+test : /

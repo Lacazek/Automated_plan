@@ -1,0 +1,34 @@
+verbose : 0
+table : halcyon
+Externe +7 : contour externe ! 7
+Externe -7 : contour externe ! -7
+CTV_dosi : cible1 ! 0
+PTV_dosi: CTV_dosi ! 5
+test1 : PTV_dosi ! 10
+test2 : contour externe ! -5
+PTV_dosi : PTV_dosi & test2
+CTV_dosi : CTV_dosi & test2
+z_CE -(PTV + 1cm) : contour externe # test1
+z_ring sein G : test1 # PTV_dosi
+z_ring sein G : z_ring sein g & test2
+test1 : /
+test2 : /
+Sein contro : sein_d ! 0
+z_OV vessie : vessie & ptv tot
+z_OV rectum : rectum & ptv tot
+z_PTV N_opt : z_ptv n # z_ptv t # vessie # rectum
+test : ptv tot ! 3
+z_Vessie_opt : vessie # ptv tot # test
+test : /
+PRV Moelle +2 : moelle ! 2
+PRV Moelle +3 : moelle ! 3
+PRV Moelle +5 : moelle ! 5
+PRV Moelle +10 : moelle ! 10
+PRV TC +2 : tronc cerebral ! 2
+PRV TC +3 : tronc cerebral ! 3
+test : /
+test : z_ptv BR ! 3
+z_parotide_D_opt : parotide d # test
+z_parotide_G_opt : parotide g # test
+test : /
+z_Trac/Oeso opt : oesophage | trachee

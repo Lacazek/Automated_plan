@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Structure_optimisation" 
         mc:Ignorable="d"
-        Title="UserInterface_Dosi" Height="450" Width="800">
+        Title="UserInterface_Dosi" Height="450" Width="900">
     <Grid>
-        <ComboBox x:Name="Box_Loc_prescription" PreviewMouseWheel="ComboBox_PreviewMouseWheel_prescription" DropDownOpened="ComboBox_DropDownOpened_prescription" DropDownClosed="ComboBox_DropDownClosed_prescription" HorizontalAlignment="Left" Height="33" Margin="57,106,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_prescription"/>
-        <Button x:Name="OK_Button" Content="OK" HorizontalAlignment="Left" Height="32" Margin="400,312,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Height="29" Margin="41,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" TextAlignment="Center" FontSize="16"><Run Language="fr-fr" Text="Veuillez choisir la prescription :"/></TextBlock>
-        <Button Content="Close" HorizontalAlignment="Left" Height="32" Margin="592,309,0,0" VerticalAlignment="Top" Width="116" Background="#FFFF2727" Click="Button_Close"/>
-        <Image x:Name="FisherMan" HorizontalAlignment="Left" Height="226" Margin="369,81,0,0" VerticalAlignment="Top" Width="339" RenderTransformOrigin="0.542,0.507"  Source = "B:\RADIOTHERAPIE\Physique\43- Routine\scripting\Opti_Struct\FisherMan4.png" IsEnabled="False"/>
-        <Rectangle HorizontalAlignment="Center" Height="74" Stroke="Black" VerticalAlignment="Top" Width="800" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" Margin="0,360,0,0">
+        <!-- <ComboBox x:Name="Box_Loc_prescription" PreviewMouseWheel="ComboBox_PreviewMouseWheel_prescription" DropDownOpened="ComboBox_DropDownOpened_prescription" DropDownClosed="ComboBox_DropDownClosed_prescription" HorizontalAlignment="Left" Height="33" Margin="471,77,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_prescription"/>-->
+        <Button x:Name="OK_Button" Content="OK" HorizontalAlignment="Left" Height="32" Margin="597,316,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="46,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" TextAlignment="Center" FontSize="14" FontWeight="Bold"><Run Text="Veuillez choisir la "/><Run Language="fr-fr" Text="localisation"/><Run Text=" :"/></TextBlock>
+        <Button Content="Close" HorizontalAlignment="Left" Height="32" Margin="731,316,0,0" VerticalAlignment="Top" Width="116" Background="#FFFF2727" Click="Button_Close"/>
+        <Image x:Name="FisherMan" HorizontalAlignment="Left" Height="226" Margin="555,85,0,0" VerticalAlignment="Top" Width="339" RenderTransformOrigin="0.542,0.507"  Source = "B:\RADIOTHERAPIE\Physique\43- Routine\scripting\Opti_Struct\FisherMan4.png" IsEnabled="False"/>
+        <Rectangle HorizontalAlignment="Center" Height="74" Stroke="Black" VerticalAlignment="Top" Width="900" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" Margin="0,360,0,0">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>
@@ -22,14 +22,41 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Height="434" Margin="753,0,0,0" Stroke="Black" VerticalAlignment="Center" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" HorizontalAlignment="Left" Width="47"/>
+        <Rectangle Height="434" Margin="852,0,0,0" Stroke="Black" VerticalAlignment="Center" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF" HorizontalAlignment="Left" Width="47"/>
         <Rectangle HorizontalAlignment="Left" Height="434" Stroke="Black" VerticalAlignment="Center" Width="38" RenderTransformOrigin="1.556,0.503" Fill="#FF95D1FF"/>
         <TextBlock HorizontalAlignment="Center" Height="55" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="616" TextAlignment="Center" FontSize="36" Background="#FF95D1FF"><Run Language="fr-fr" Text="AutoPlanning"/></TextBlock>
-        <ComboBox x:Name="Box_Loc_cote" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cote" DropDownOpened="ComboBox_DropDownOpened_cote" DropDownClosed="ComboBox_DropDownClosed_cote" HorizontalAlignment="Left" Height="33" Margin="53,173,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_cote"/>
-        <TextBlock HorizontalAlignment="Left" Height="28" Margin="41,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" TextAlignment="Center" FontSize="16"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="e côté"/><Run Text=" :"/></TextBlock>
-        <ComboBox x:Name="Box_Loc_machine" PreviewMouseWheel="ComboBox_PreviewMouseWheel_machine" DropDownOpened="ComboBox_DropDownOpened_machine" DropDownClosed="ComboBox_DropDownClosed_machine"  HorizontalAlignment="Left" Height="33" Margin="56,317,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_machine"/>
-        <TextBlock HorizontalAlignment="Left" Height="28" Margin="43,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" TextAlignment="Center" FontSize="16"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="a machine"/><Run Text=" :"/></TextBlock>
-        <ComboBox x:Name="Box_Loc_technique" PreviewMouseWheel="ComboBox_PreviewMouseWheel_technique" DropDownOpened="ComboBox_DropDownOpened_technique" DropDownClosed="ComboBox_DropDownClosed_technique" HorizontalAlignment="Left" Height="33" Margin="56,245,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_technique"/>
-        <TextBlock HorizontalAlignment="Left" Height="28" Margin="38,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" TextAlignment="Center" FontSize="16"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="a technique"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_cote" PreviewMouseWheel="ComboBox_PreviewMouseWheel_cote" DropDownOpened="ComboBox_DropDownOpened_cote" DropDownClosed="ComboBox_DropDownClosed_cote" HorizontalAlignment="Left" Height="33" Margin="286,226,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_cote"/>
+        <TextBlock HorizontalAlignment="Left" Height="28" Margin="48,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextAlignment="Center" FontSize="14" FontWeight="Bold"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="e côté"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_machine" PreviewMouseWheel="ComboBox_PreviewMouseWheel_machine" DropDownOpened="ComboBox_DropDownOpened_machine" DropDownClosed="ComboBox_DropDownClosed_machine"  HorizontalAlignment="Left" Height="33" Margin="286,315,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_machine"/>
+        <TextBlock HorizontalAlignment="Left" Height="28" Margin="48,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextAlignment="Center" FontSize="14" FontWeight="Bold"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="a machine"/><Run Text=" :"/></TextBlock>
+        <ComboBox x:Name="Box_Loc_technique" PreviewMouseWheel="ComboBox_PreviewMouseWheel_technique" DropDownOpened="ComboBox_DropDownOpened_technique" DropDownClosed="ComboBox_DropDownClosed_technique" HorizontalAlignment="Left" Height="33" Margin="286,271,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_technique"/>
+        <TextBlock HorizontalAlignment="Left" Height="28" Margin="48,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" TextAlignment="Center" FontSize="14" FontWeight="Bold"><Run Text="Veuillez choisir l"/><Run Language="fr-fr" Text="a technique"/><Run Text=" :"/></TextBlock>
+        <TextBlock x:Name="DoseTotC1"  HorizontalAlignment="Left" Height="17" Margin="61,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"><Run Text="Dose Totale"/><Run Text=" cible 1"/><Run Language="fr-fr" Text=" [Gy]"/><Run Text=" :"/></TextBlock>
+        <TextBox x:Name="DoseTotale1" TextChanged="DoseTotale1_TextChanged" HorizontalAlignment="Left" Height="17" Margin="200,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
+        <TextBlock x:Name="DoseFracC1"  HorizontalAlignment="Left" Height="16" Margin="263,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"><Run Text="Dose "/><Run Text="par fraction"/><Run Language="fr-fr" Text=" [Gy] :"/></TextBlock>
+        <TextBox x:Name="DoseFraction1" TextChanged="DoseFraction1_TextChanged" HorizontalAlignment="Left" Height="17" Margin="397,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
+        <Viewbox HorizontalAlignment="Left" Height="17" Margin="61,159,0,0" Stretch="Fill" VerticalAlignment="Top" Width="384">
+            <Grid Height="17" Width="384">
+                <TextBlock x:Name="DoseTotC3"  HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Center" Width="139"><Run Text="Dose Totale"/><Run Text=" cible 3"/><Run Language="fr-fr" Text=" [Gy]"/><Run Text=" :"/></TextBlock>
+                <TextBox x:Name="DoseTotale3" TextChanged="DoseTotale3_TextChanged" HorizontalAlignment="Left" Height="17" Margin="139,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="48"/>
+                <TextBlock x:Name="DoseFracC3"  HorizontalAlignment="Left" Height="16" Margin="202,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="129"><Run Text="Dose "/><Run Text="par fraction"/><Run Language="fr-fr" Text=" [Gy] :"/></TextBlock>
+                <TextBox x:Name="DoseFraction3" TextChanged="DoseFraction3_TextChanged" HorizontalAlignment="Left" Height="17" Margin="336,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="48"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Left" Height="19" Margin="61,137,0,0" Stretch="Fill" VerticalAlignment="Top" Width="384">
+            <Grid Height="19" Width="384">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="93*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="DoseTotC2" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Center" Width="139" Grid.ColumnSpan="3"><Run Text="Dose Totale"/><Run Text=" cible 2"/><Run Language="fr-fr" Text=" [Gy]"/><Run Text=" :"/></TextBlock>
+                <TextBox x:Name="DoseTotale2" TextChanged="DoseTotale2_TextChanged" HorizontalAlignment="Left" Height="17" Margin="34,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="48" Grid.Column="2"/>
+                <TextBlock x:Name="DoseFracC2"  HorizontalAlignment="Left" Height="16" Margin="97,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="129" Grid.Column="2"><Run Text="Dose "/><Run Text="par fraction"/><Run Language="fr-fr" Text=" [Gy] :"/></TextBlock>
+                <TextBox x:Name="DoseFraction2" TextChanged="DoseFraction2_TextChanged" HorizontalAlignment="Left" Height="17" Margin="231,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="48" Grid.Column="2"/>
+            </Grid>
+        </Viewbox>
+        <ComboBox x:Name="Box_Loc_prescription" PreviewMouseWheel="ComboBox_PreviewMouseWheel_prescription" DropDownOpened="ComboBox_DropDownOpened_prescription" DropDownClosed="ComboBox_DropDownClosed_prescription" HorizontalAlignment="Left" Height="33" Margin="286,184,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="ComboBox_SelectionChanged_prescription"/>
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="107,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" TextAlignment="Center" FontSize="14" FontWeight="Bold" IsEnabled="False"><Run Text="Veuillez "/><Run Text="compléter"/><Run Text=" la prescription :"/></TextBlock>
     </Grid>
 </Window>

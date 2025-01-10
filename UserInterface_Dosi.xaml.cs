@@ -40,6 +40,7 @@ namespace Structure_optimisation
     {
         private UserInterfaceModel _model;
         private bool isDropDownOpen = false;
+        private List<string> _prescription;
 
         internal UserInterface_Dosi(UserInterfaceModel model)
         {
@@ -50,10 +51,79 @@ namespace Structure_optimisation
             Box_Loc_machine.Visibility = Visibility.Collapsed;
             Box_Loc_cote.Visibility = Visibility.Collapsed;
             Box_Loc_technique.Visibility = Visibility.Collapsed;
-            foreach (var item in Directory.GetFiles(_model.GetPrescription))
+
+            DoseTotC2.Visibility = Visibility.Collapsed;
+            DoseFracC2.Visibility = Visibility.Collapsed;
+            DoseTotale2.Visibility = Visibility.Collapsed;
+            DoseFraction2.Visibility = Visibility.Collapsed;
+            DoseTotC3.Visibility = Visibility.Collapsed;
+            DoseFracC3.Visibility = Visibility.Collapsed;
+            DoseTotale3.Visibility = Visibility.Collapsed;
+            DoseFraction3.Visibility = Visibility.Collapsed;
+
+            int targetCount = _model.Targets?.Count ?? 3;
+            switch (targetCount)
+            {
+                case 1:
+
+                    DoseTotC1.Visibility = Visibility.Visible;
+                    DoseFracC1.Visibility = Visibility.Visible;
+                    DoseTotale1.Visibility= Visibility.Visible;
+                    DoseFraction1.Visibility = Visibility.Visible;
+                    break;
+
+                case 2 :
+
+                    DoseTotC1.Visibility = Visibility.Visible;
+                    DoseFracC1.Visibility = Visibility.Visible;
+                    DoseTotale1.Visibility = Visibility.Visible;
+                    DoseFraction1.Visibility = Visibility.Visible;
+                    DoseTotC2.Visibility = Visibility.Visible;
+                    DoseFracC2.Visibility = Visibility.Visible;
+                    DoseTotale2.Visibility = Visibility.Visible;
+                    DoseFraction2.Visibility = Visibility.Visible;
+                    break;
+
+                default :
+
+                    DoseTotC1.Visibility = Visibility.Visible;
+                    DoseFracC1.Visibility = Visibility.Visible;
+                    DoseTotale1.Visibility = Visibility.Visible;
+                    DoseFraction1.Visibility = Visibility.Visible;
+                    DoseTotC2.Visibility = Visibility.Visible;
+                    DoseFracC2.Visibility = Visibility.Visible;
+                    DoseTotale2.Visibility = Visibility.Visible;
+                    DoseFraction2.Visibility = Visibility.Visible;
+                    DoseTotC3.Visibility = Visibility.Visible;
+                    DoseFracC3.Visibility = Visibility.Visible;
+                    DoseTotale3.Visibility = Visibility.Visible;
+                    DoseFraction3.Visibility = Visibility.Visible;
+                    break;
+            }
+            /*foreach (var item in Directory.GetFiles(_model.GetPrescription))
             {
                 Box_Loc_prescription.Items.Add(Path.GetFileNameWithoutExtension(item));
-            }
+            }*/
+
+            _prescription = new List<string> { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+
+            List<string> items = new List<string> {
+                "Pelvis",
+                "Pelvis Gyn",
+                "Pelvis + GG",
+                "Pelvis Gyn + GG",
+                "Prostate", "Sein",
+                "Crane", "Poumon",
+                "Poumon 4D",
+                "General/1loc",
+                "General/2loc",
+                "General/3loc" };
+
+            items.Sort();
+
+            Box_Loc_prescription.ItemsSource = items;
+
+
             Box_Loc_cote.Items.Add("Droit");
             Box_Loc_cote.Items.Add("Gauche");
             Box_Loc_cote.Items.Add(string.Empty);
@@ -68,15 +138,6 @@ namespace Structure_optimisation
             {
                 Box_Loc_machine.Items.Add(item.Id.Contains(":") ? item.Id.Split(':')[0] : item.Id);
             }
-        }
-
-        internal GetFile File
-        {
-            get { return _model.File; }
-        }
-        internal void IsOpened(bool test)
-        {
-            _model.IsOpened(test);
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)
@@ -94,6 +155,8 @@ namespace Structure_optimisation
                 Box_Loc_machine.SelectedItem.ToString()
                 };
                 _model.UserSelection = selections;
+                _prescription[0] = Box_Loc_prescription.SelectedItem.ToString();
+                _model.GetPrescription2 = _prescription;
                 this.Close();
                 _model.LaunchPlanning();
             }
@@ -195,5 +258,35 @@ namespace Structure_optimisation
         {
             isDropDownOpen = false;
         }
+
+        private void DoseFraction1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[2] = (DoseFraction1.Text != null) ? DoseFraction1.Text : string.Empty;
+        }
+        private void DoseFraction2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[4] = (DoseFraction2.Text != null) ? DoseFraction2.Text : string.Empty;
+        }
+
+        private void DoseFraction3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[6] = (DoseFraction3.Text != null) ? DoseFraction3.Text : string.Empty;
+        }
+
+        private void DoseTotale1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[1] = (DoseTotale1.Text != null) ? DoseTotale1.Text : string.Empty;
+        }
+
+        private void DoseTotale2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[3] = (DoseTotale2.Text != null) ? DoseTotale2.Text : string.Empty;
+        }
+
+        private void DoseTotale3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _prescription[5] = (DoseTotale3.Text != null) ? DoseTotale3.Text : string.Empty;
+        }
+
     }
 }

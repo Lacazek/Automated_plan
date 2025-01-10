@@ -1,0 +1,13 @@
+verbose : 0
+table : moyenne
+z_ITV : cible2
+z_PTV : cible1 # cible2
+z_ring1 : z_ptv ! 5
+z_ring2 : z_ptv ! 10
+z_ring3 : z_ptv ! 30
+z_ring3 : z_ring3 # z_ring2
+z_ring2 : z_ring2 # z_ring1
+z_ring1 : z_ring1 # z_ptv 
+PRV_Moelle+1 : Moelle ! 1
+PRV_Moelle+2 : Moelle ! 2
+PRV_Moelle+3 : Moelle ! 3

@@ -1,0 +1,8 @@
+verbose : 0
+z_PTV : cible1 
+z_ring1 : z_ptv ! 5
+z_ring2 : z_ptv ! 10
+z_ring3 : z_ptv ! 30
+z_ring3 : z_ring3 # z_ring2
+z_ring2 : z_ring2 # z_ring1
+z_ring1 : z_ring1 # z_ptv 
