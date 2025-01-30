@@ -1,6 +1,6 @@
 verbose : 0
 table : moyenne
-z_ITV : cible2
+z_ITV : cible2 ! 0
 z_PTV : cible1 # cible2
 z_ring1 : ptv ! 5
 z_ring2 : ptv ! 10

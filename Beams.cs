@@ -58,8 +58,10 @@ namespace Opti_Struct
                 // Suppression des faisceaux pré-existents 
                 if (model.GetContext.ExternalPlanSetup.Beams != null)
                 {
-                    foreach (var beam in model.GetContext.ExternalPlanSetup.Beams)
+                    foreach (var beam in model.GetContext.ExternalPlanSetup.Beams.ToList())
+                    {
                         model.GetContext.ExternalPlanSetup.RemoveBeam(beam);
+                    }
                     model.Message = $"La ballistique n'est pas nulle; les faisceaux ont tous été supprimés\nLes nouveaux faisceaux sont ajoutés";
                 }
 
@@ -80,7 +82,7 @@ namespace Opti_Struct
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).TotalDoseLimit = model.GetContext.PlanSetup.TotalDose;
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).DailyDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
                         model.GetContext.PlanSetup.ReferencePoints.First(x => x.Id.Equals("AutoPoint")).SessionDoseLimit = model.GetContext.PlanSetup.DosePerFraction;
-                        model.Message = $"Point de référence généré et remplie";
+                        model.Message = $"Point de référence généré et rempli";
                     }
                     else
                     {
@@ -102,7 +104,7 @@ namespace Opti_Struct
 
                 // Paramètre DRR (taille [mm],pondération, fenetre scan de , fenêtre scan à, découpe de, découpe à)
                 DRRCalculationParameters DRR = new DRRCalculationParameters(500, 1, -450, 150, 2, 6);
-                model.Message = $"Paramètres de DRR générés";
+                model.Message = $"Paramètres DRR générés";
 
                 // Isocentre
                 try
@@ -172,7 +174,7 @@ namespace Opti_Struct
                 {
 
                     int gantryStart = model.UserSelection[1].Contains("Gauche") ? 179 : model.UserSelection[1].Contains("Droit") ? 181 : 181;
-                    int gantryEnd = model.UserSelection[0].ToUpper().Contains("SEIN") ? model.UserSelection[1].Contains("Droit") ? 50 : model.UserSelection[1].Contains("Gauche") ? 310 : 0 : 0;
+                    int gantryEnd = model.UserSelection[0].ToUpper().Contains("SEIN") ? model.UserSelection[1].Contains("Droit") ? 50 : model.UserSelection[1].Contains("Gauche") ? 310 : 179 : 179;
                     var firstDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.CounterClockwise : GantryDirection.Clockwise;
                     var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
 

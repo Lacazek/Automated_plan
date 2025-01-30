@@ -7,7 +7,7 @@ z_GTV + : cible4 ! 0
 z_GTV N+ : cible5 ! 0
 z_PTV_tot : z_PTV HR | z_PTV IR | Z_PTV BR
 z_GTV tot: z_GTV + | z_GTV N+
-z_PTV_HR : z_ptv HR # z_gtv tot
+z_PTV HR : z_ptv HR # z_gtv tot
 test : z_PTV IR ! 5
 test1 : z_ptv hr ! 15
 z_PTV_BR_loin : z_ptv br # test # test1

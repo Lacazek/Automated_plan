@@ -337,7 +337,7 @@ namespace Structure_optimisation
                 ShowNewFolderButton = true
             };
 
-            string initialPath = _model.UserPath;
+            string initialPath = _model.GetVolumePath;
 
             if (!string.IsNullOrEmpty(initialPath) && System.IO.Directory.Exists(initialPath))
             {
@@ -348,7 +348,7 @@ namespace Structure_optimisation
 
             try
             {
-                _model.UserPath = folderPicker.SelectedPath;
+                _model.GetVolumePath = folderPicker.SelectedPath;
                 _model.Message = $"\nChangement du dossier initial, le nouveau dossier est le suivant :";
                 _model.Message += $"{_model.UserPath}\n";
                 Box_Loc.Items.Clear();

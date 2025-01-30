@@ -27,6 +27,7 @@ Poumon G; V5Gy, 30%, IUCT
 Poumon G; V20Gy, 15%, IUCT
 Poumon G; V30Gy, 10%, IUCT
 Sein D; Dose moyenne, 5Gy, CHU
+Sein G; Dose moyenne, 5Gy, CHU
 Sein contro; D0%, 6Gy, IUCT
 Sein contro; D0%, 7Gy, IUCT
 Oesophage; V40Gy, 2%, CHU
@@ -34,6 +35,7 @@ IVA; V30Gy, 2%, CHU
 IVA; D50%, 15Gy, CHU
 coronaires; V20Gy, 0%, CHU
 Plexus G; D0%,56Gy, CHU
+Plexus D; D0%,56Gy, CHU
 Thyroide; Dose moyenne,30Gy, CHU
 Thyroide; D5%, 30Gy, CHU
 moelle; D0%,30Gy, CHU

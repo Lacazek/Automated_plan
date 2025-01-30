@@ -80,6 +80,7 @@ namespace Opti_Struct
                         model.GetContext.PlanSetup.SetCalculationOption(MyOptimizer, "General/GpuSettings/UseGPU", "Yes");
                         model.GetContext.ExternalPlanSetup.Optimize(300);
                         model.GetContext.ExternalPlanSetup.CalculateLeafMotionsAndDose();
+                        model.Message = $"Phase 1 terminée ...\n";
                         model.GetContext.ExternalPlanSetup.Optimize(300, OptimizationOption.ContinueOptimizationWithPlanDoseAsIntermediateDose);
                         model.GetContext.ExternalPlanSetup.CalculateLeafMotionsAndDose();
                         //model.GetContext.ExternalPlanSetup.PlanNormalizationValue = model.GetContext.PlanSetup.GetDoseAtVolume(model.GetContext.StructureSet.Structures.First(x => x.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)), 99, VolumePresentation.Relative, DoseValuePresentation.Relative).Dose - 5;
@@ -96,9 +97,10 @@ namespace Opti_Struct
                     else
                     {
                         model.GetContext.PlanSetup.SetCalculationOption(MyOptimizer, "VMAT/ApertureShapeController", "Moderate");
-                        model.Message = $"Dosimétrie En Arcthérapie en cours de réalisation ...\n";
+                        model.Message = $"Dosimétrie en arcthérapie en cours de réalisation ...\n";
                         model.GetContext.ExternalPlanSetup.OptimizeVMAT();
                         model.GetContext.ExternalPlanSetup.CalculateDose();
+                        model.Message = $"Phase 1 terminée ...\n";
                         model.GetContext.ExternalPlanSetup.OptimizeVMAT(new OptimizationOptionsVMAT(OptimizationOption.ContinueOptimizationWithPlanDoseAsIntermediateDose, MLCID));
                         model.GetContext.ExternalPlanSetup.CalculateDose();
                         //model.GetContext.ExternalPlanSetup.PlanNormalizationValue = model.GetContext.PlanSetup.GetDoseAtVolume(model.GetContext.StructureSet.Structures.First(x=>x.Id.Equals(model.GetContext.PlanSetup.TargetVolumeID)),99.5,VolumePresentation.Relative,DoseValuePresentation.Relative).Dose - 0.5;
@@ -109,6 +111,7 @@ namespace Opti_Struct
                 {
                     model.Message = $"Erreur dans la réalisation de la dosimétrie";
                     model.Message = ex.Message + "\n";
+                    MessageBox.Show($"Erreur dans la réalisation de la dosimétrie");
                 }
             }
         }
@@ -1024,6 +1027,7 @@ namespace Opti_Struct
                             break;
                         #endregion
 
+                            // Revoir nom des cibles
                         #region Stéréo 2 locs
                         // a editer pour 2 cibles
                         case "GENERAL/2LOC":
@@ -1039,8 +1043,8 @@ namespace Opti_Struct
                             // cible2
                             try
                             {
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose, DoseValue.DoseUnit.Gy), 100, 300);
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(double.Parse(model.GetPrescription2[4]), DoseValue.DoseUnit.Gy), 100, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(double.Parse(model.GetPrescription2[4]) * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
                             }
                             catch { }
 
@@ -1069,6 +1073,7 @@ namespace Opti_Struct
                             break;
                         #endregion
 
+                            //revoir nom des cibles
                         #region Stéréo 3 locs
                         // a editer pour 3 cibles
                         case "GENERAL/3LOC":
@@ -1083,16 +1088,16 @@ namespace Opti_Struct
                             // cible2
                             try
                             {
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose, DoseValue.DoseUnit.Gy), 100, 300);
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(double.Parse(model.GetPrescription2[4]), DoseValue.DoseUnit.Gy), 100, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(double.Parse(model.GetPrescription2[4]) * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
                             }
                             catch { }
 
                             // cible3
                             try
                             {
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose, DoseValue.DoseUnit.Gy), 100, 300);
-                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(model.GetContext.PlanSetup.TotalDose.Dose * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Lower, new DoseValue(double.Parse(model.GetPrescription2[6]), DoseValue.DoseUnit.Gy), 100, 300);
+                                model.GetContext.PlanSetup.OptimizationSetup.AddPointObjective(model.GetContext.StructureSet.Structures.Where(x => x.Id.ToUpper().Contains("Z_PTV")).First(), OptimizationObjectiveOperator.Upper, new DoseValue(double.Parse(model.GetPrescription2[6]) * 1.02, DoseValue.DoseUnit.Gy), 0, 300);
                             }
                             catch { }
 

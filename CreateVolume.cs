@@ -164,16 +164,16 @@ namespace Structure_optimisation
             #endregion
 
             #region Body creation
+
             Structure BODY = _ss.Structures.Where(x => x.DicomType.ToUpper().Equals("EXTERNAL")).SingleOrDefault();
-
-            SearchBodyParameters _bodyParameters = _ss.GetDefaultSearchBodyParameters();
-            _bodyParameters.KeepLargestParts = true;
-            _bodyParameters.FillAllCavities = true;
-            _bodyParameters.Smoothing = true;
-            _bodyParameters.SmoothingLevel = 2;
-
             try
             {
+                SearchBodyParameters _bodyParameters = _ss.GetDefaultSearchBodyParameters();
+                _bodyParameters.KeepLargestParts = true;
+                _bodyParameters.FillAllCavities = true;
+                _bodyParameters.Smoothing = true;
+                _bodyParameters.SmoothingLevel = 2;
+
                 if (_userFileChoice.ToLower().Contains("sein"))
                 {
                     _ss.RemoveStructure(BODY);
@@ -210,7 +210,8 @@ namespace Structure_optimisation
             }
             catch
             {
-                erreur += $"❌ Une erreur de nom ou de couleur ou de commentaire est survenue sur la structure Contour externe\n\n";
+                erreur += $"❌ la structure est peut être déjà approuvé un il existe une erreur de nom ou de couleur ou de commentaire " +
+                    $"sur la structure Contour externe\n\n";
             }
             #endregion
 
@@ -767,6 +768,9 @@ namespace Structure_optimisation
                 Message = $"\nErreur dans la régénération du fichier de départ\n";
                 Message = $"Fichier actuel non approuvé :\n\n{fileContent}\n";
             }
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         #region Message

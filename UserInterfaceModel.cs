@@ -79,10 +79,11 @@ namespace Structure_optimisation
             _fisherMan = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).ToString(), "fisherMan4.png");
             FillList();
 
-            FileInfo _fileinfo = new FileInfo(@"LogFile.txt");
+            string LogFileName = $@"File\Log\LogFile_{Environment.UserName}.txt";
+            FileInfo _fileinfo = new FileInfo(LogFileName);
             if (_fileinfo.Exists && _fileinfo.Length > 500 * 1000)
                 _fileinfo.Delete();
-            _logFile = new StreamWriter(@"LogFile.txt", true);
+            _logFile = new StreamWriter(LogFileName, true);
 
             _file.MessageChanged += MessageChanged;
             Message = $"\n**********************************";
@@ -183,6 +184,8 @@ namespace Structure_optimisation
 
                 };
                 FP.ShowDialog();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
 
             try
@@ -203,16 +206,23 @@ namespace Structure_optimisation
         {
             // 1 Création des contours --> getFile-> CreateVolume
             _file.CreateUserDosimetryFile(this);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             // 2 Création des faisceaux --> Beams
             if (MessageBox.Show("Voulez-vous créer les faisceaux? ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Message = $"L'utilisateur à choisi de réaliser automatiquement les faisceaux\n";
                 _beams.CreateBeams(this);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
                 if (MessageBox.Show("Voulez-vous lancer la dosimétrie ?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Message = $"L'utilisateur à choisi de réaliser automatiquement la dosimétrie, à minima le remplissage des objectifs d'optimisation\n";
                     //3 Paramétrages de la dosi --> Dosimetry
                     _dosimetry.LaunchDosimetry(this);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
                 else
                     Message = $"L'utilisateur n'a pas choisi de réaliser automatiquement ni la dosimétrie ni le remplissage automatique des pré-contraintes dosimétriques\n";
