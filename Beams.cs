@@ -173,8 +173,8 @@ namespace Opti_Struct
                 else if (model.UserSelection[2].Contains("Arcthérapie") || model.UserSelection[2].Contains("Dynamic Arc") || model.UserSelection[2].Contains("Stéréotaxie"))
                 {
 
-                    int gantryStart = model.UserSelection[1].Contains("Gauche") ? 179 : model.UserSelection[1].Contains("Droit") ? 181 : 181;
-                    int gantryEnd = model.UserSelection[0].ToUpper().Contains("SEIN") ? model.UserSelection[1].Contains("Droit") ? 50 : model.UserSelection[1].Contains("Gauche") ? 310 : 179 : 179;
+                    int gantryStart = model.UserSelection[1].Contains("Gauche") ? 179 : model.UserSelection[1].Contains("Droit") ? 181 : 181;                  
+                    int gantryEnd = model.UserSelection[0].ToUpper().Contains("SEIN") ? (model.UserSelection[1].Contains("Droit") ? 50 : model.UserSelection[1].Contains("Gauche") ? 310 : 179) : (model.UserSelection[1].Contains("Droit") || model.UserSelection[1].Contains("Gauche") ? 0 : 179);
                     var firstDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.CounterClockwise : GantryDirection.Clockwise;
                     var secondDirection = model.UserSelection[1].Contains("Gauche") ? GantryDirection.Clockwise : GantryDirection.CounterClockwise;
 
@@ -187,8 +187,9 @@ namespace Opti_Struct
                     {
                         model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, _collimatorAngle, 180, gantryStart, gantryEnd, firstDirection, 0, _isocenter);
                         model.GetContext.ExternalPlanSetup.AddConformalArcBeam(BeamParameters, 360 - _collimatorAngle, 180, gantryEnd, gantryStart, secondDirection, 0, _isocenter);
-                        model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(5), _target, true, true, false));
                         model.GetContext.ExternalPlanSetup.OptimizationSetup.UseJawTracking = true;
+                        model.GetContext.ExternalPlanSetup.Beams.ToList().ForEach(beam => beam.FitCollimatorToStructure(new FitToStructureMargins(5), _target, true, true, false));
+
                     }
 
                     foreach (var (b, index) in model.GetContext.PlanSetup.Beams.Select((b, index) => (b, index)))
@@ -227,10 +228,12 @@ namespace Opti_Struct
                 model.GetContext.PlanSetup.Beams.First(x => x.IsSetupField).CreateOrReplaceDRR(DRR);
                 model.Message = $"KVCBCT mis à jour avec succés\n";
 
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur dans la création des faisceaux\n {ex.Message}");
+                model.Message = $"Etape non valide : une erreur est survenue\n";
             }
         }
 
@@ -370,6 +373,7 @@ namespace Opti_Struct
 
         internal void AddClinicalGoalsFromTemplate(UserInterfaceModel model)
         {
+
         }
     }
 }

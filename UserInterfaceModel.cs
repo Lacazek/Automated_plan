@@ -291,7 +291,6 @@ namespace Structure_optimisation
             get { return _file.GetCheckPath; }
             set { _file.GetCheckPath = value; }
         }
-
         internal List<string> Localisation
         {
             get { return _localisation; }
